@@ -1,0 +1,155 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "CameraDrag2D",
+"language": "GDScript",
+"path": "res://library/nui_lib/2D/camera_drag_2d.gd"
+}, {
+"base": "Reference",
+"class": "CameraSlide2D",
+"language": "GDScript",
+"path": "res://library/nui_lib/2D/camera_slide_2d.gd"
+}, {
+"base": "Reference",
+"class": "CameraZoom2D",
+"language": "GDScript",
+"path": "res://library/nui_lib/2D/camera_zoom_2d.gd"
+}, {
+"base": "PanelContainer",
+"class": "Display",
+"language": "GDScript",
+"path": "res://scenes/editor/display/display.gd"
+}, {
+"base": "Camera2D",
+"class": "DisplayCamera",
+"language": "GDScript",
+"path": "res://scenes/editor/viewer/camera.gd"
+}, {
+"base": "PanelContainer",
+"class": "Editor",
+"language": "GDScript",
+"path": "res://scenes/editor/editor.gd"
+}, {
+"base": "StrictFocusButton",
+"class": "IconButton",
+"language": "GDScript",
+"path": "res://scripts/button_icon_switch.gd"
+}, {
+"base": "PanelContainer",
+"class": "Notif",
+"language": "GDScript",
+"path": "res://scripts/notif.gd"
+}, {
+"base": "Reference",
+"class": "Preloads",
+"language": "GDScript",
+"path": "res://library/Preloads.gd"
+}, {
+"base": "PanelContainer",
+"class": "PropBase",
+"language": "GDScript",
+"path": "res://scenes/editor/properties/prop_base.gd"
+}, {
+"base": "Reference",
+"class": "ShortLib",
+"language": "GDScript",
+"path": "res://library/ShortLib.gd"
+}, {
+"base": "Button",
+"class": "StrictFocusButton",
+"language": "GDScript",
+"path": "res://scripts/button_focus_strict.gd"
+}, {
+"base": "SpinBox",
+"class": "StrictSpinBox",
+"language": "GDScript",
+"path": "res://scripts/spinbox_value_strict.gd"
+}, {
+"base": "LineEdit",
+"class": "SubtleLineEdit",
+"language": "GDScript",
+"path": "res://scripts/line_edit_editable_sublte.gd"
+}, {
+"base": "PanelContainer",
+"class": "Viewer",
+"language": "GDScript",
+"path": "res://scenes/editor/viewer/viewer.gd"
+} ]
+_global_script_class_icons={
+"CameraDrag2D": "",
+"CameraSlide2D": "",
+"CameraZoom2D": "",
+"Display": "",
+"DisplayCamera": "",
+"Editor": "",
+"IconButton": "",
+"Notif": "",
+"Preloads": "",
+"PropBase": "",
+"ShortLib": "",
+"StrictFocusButton": "",
+"StrictSpinBox": "",
+"SubtleLineEdit": "",
+"Viewer": ""
+}
+
+[application]
+
+config/name="FeelVibes"
+config/icon="res://icon.png"
+
+[display]
+
+window/dpi/allow_hidpi=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/atlas_player/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/native_dialogs/plugin.cfg" )
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[input]
+
+zoom_in={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":4,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+zoom_out={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":5,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+mouse_left={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+mouse_right={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[mono]
+
+project/assembly_name="FeelVibes"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
