@@ -7,3 +7,5 @@ F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\Debug\FeelVibes.dll
 F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\Debug\FeelVibes.pdb
 F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.dll
 F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.pdb
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\Debug\TagLibSharp.dll
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.csproj.CopyComplete

@@ -45,6 +45,12 @@
       "frameworks": {
         "net472": {
           "targetAlias": "net472",
+          "dependencies": {
+            "TagLibSharp": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            }
+          },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100\\RuntimeIdentifierGraph.json"
         }
       }

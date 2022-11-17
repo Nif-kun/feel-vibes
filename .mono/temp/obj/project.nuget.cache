@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "zkGzk31bpCVRlpy485bPdyRVdd5pn12RKxZvylDcy0lqPxSL5xrsnhWVdJuIK8ByL0IGCObURpIzVIPs4x6BXQ==",
+  "dgSpecHash": "eO+jBKHQ901Z3WwUTL3B7uXEfBJhj/e/yi+35Ybez5RZ4wmajcz8rxOfLXEetilfKnbaIoOaxYwytEu2akeHMw==",
   "success": true,
   "projectFilePath": "F:\\Programming\\AppDev\\Projects\\feel-vibes\\FeelVibes.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Nif\\.nuget\\packages\\taglibsharp\\2.3.0\\taglibsharp.2.3.0.nupkg.sha512"
+  ],
   "logs": []
 }

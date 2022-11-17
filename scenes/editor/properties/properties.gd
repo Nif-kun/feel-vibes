@@ -17,7 +17,7 @@ onready var WidgetProp := $ScrollBox/VLayout/WidgetProp
 onready var ScrollBox := $ScrollBox
 
 # CS-objects
-var Zipper = Preloads.zipper_script.new()
+var Zipper = Defaults.zipper_script.new()
 
 # Data var
 export var _editor_version := "1.0"
@@ -64,8 +64,6 @@ func save_data(temp_dir:String, config_file:String, save_file:String, new_save:b
 
 
 func load_data(save_file:String, config_file:String):
-	print(self.name+":"+save_file)
-	print(self.name+":"+config_file)
 	var texture_images = Zipper.CollectTextureImages(save_file)
 	var config_json = JSON.parse(Zipper.ReadTextFile(save_file, config_file)).result
 	var has_background = config_json.has("background")

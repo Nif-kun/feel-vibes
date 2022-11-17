@@ -141,6 +141,16 @@ static func remove_file(file_path:String, check_name:bool=false, warn:bool=false
 			push_warning("ShortLib[WRN]: an error occurred when trying to remove the file named "+file_path+". ERR_CODE: "+str(remove_err))
 
 
+static func time_convert(time_in_sec):
+	var seconds = time_in_sec%60
+	var minutes = (time_in_sec/60)%60
+	var hours = (time_in_sec/60)/60
+	if hours < 1:
+		return "%02d:%02d" % [minutes, seconds]
+	#returns a string with the format "HH:MM:SS"
+	return "%02d:%02d:%02d" % [hours, minutes, seconds]
+
+
 static func invert_float(start:float, end:float, value:float) -> float:
 	return (start + end) - value
 

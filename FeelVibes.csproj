@@ -4,6 +4,9 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="TagLibSharp" Version="2.3.0" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.IO.Compression" />
   </ItemGroup>
 </Project>

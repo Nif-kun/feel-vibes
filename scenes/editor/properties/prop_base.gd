@@ -15,4 +15,4 @@ const SAVE_ERR_COPY_FILE = 'SaveERR: failed to copy "%s" to "%s". ERR_CODE: %s'
 const SAVE_ERR_OPEN_FILE = 'SaveERR: failed to open "%s". ERR_CODE: %s'
 
 # CS-objects
-var Zipper = Preloads.zipper_script.new()
+var Zipper = Defaults.zipper_script.new()

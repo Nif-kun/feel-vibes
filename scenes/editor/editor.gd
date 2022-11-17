@@ -10,10 +10,9 @@ onready var UILock := $UILock
 onready var SizeWarning := $Notifs/Margin/HLayout/SizeWarning
 
 # Paths
-var base_dir := OS.get_user_data_dir()
-var temp_dir := base_dir+"/"+"temp"
-export var config_file := "fvd_config.json"
-export var project_extension := ".fvd"
+var temp_dir := Defaults.get_temp_dir()
+var config_file := Defaults.config_file
+var project_extension := Defaults.project_extension
 
 # Private 
 export var _editor_version := "1.0"

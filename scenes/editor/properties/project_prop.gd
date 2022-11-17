@@ -13,7 +13,7 @@ onready var ProjectName := $VLaout/Flex/ProjectName
 onready var Author := $VLaout/Flex/Author
 
 # Private 
-export var _stock_icon : Texture = Preloads.stock_icon
+export var _stock_icon : Texture = Defaults.stock_icon
 export var _stock_icon_color := Color("dfc8ff")
 onready var _default_icon : Texture = _stock_icon
 onready var _default_icon_color : Color = _stock_icon_color

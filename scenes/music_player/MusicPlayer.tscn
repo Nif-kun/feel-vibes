@@ -1,0 +1,233 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://assets/icons/material_ui/custom/timestamp_grabber.svg" type="Texture" id=1]
+[ext_resource path="res://assets/icons/material_ui/custom/timestamp_grabber_empty.svg" type="Texture" id=2]
+[ext_resource path="res://assets/fonts/GoogleSans/GoogleSans-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/shuffle_white_48dp.svg" type="Texture" id=4]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/skip_next_white_48dp.svg" type="Texture" id=5]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/skip_previous_white_48dp.svg" type="Texture" id=6]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/pause_circle_white_48dp.svg" type="Texture" id=7]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/play_circle_white_48dp.svg" type="Texture" id=8]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/repeat_white_48dp.svg" type="Texture" id=9]
+[ext_resource path="res://scenes/music_player/music_player.gd" type="Script" id=10]
+[ext_resource path="res://sample/04 迷い子.mp3" type="AudioStream" id=11]
+[ext_resource path="res://scenes/dev_tools/FileInspector.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/dev_tools/TextureTest.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/fonts/GoogleSans/GoogleSans-Bold.ttf" type="DynamicFontData" id=14]
+[ext_resource path="res://assets/styles/timestamp_slider/timestamp_area_highlight.tres" type="StyleBox" id=15]
+[ext_resource path="res://assets/styles/timestamp_slider/timestamp_area.tres" type="StyleBox" id=16]
+[ext_resource path="res://assets/styles/timestamp_slider/timestamp_slider.tres" type="StyleBox" id=17]
+[ext_resource path="res://assets/styles/volume_slider/volume_area_highlight.tres" type="StyleBox" id=18]
+[ext_resource path="res://assets/styles/volume_slider/volume_slider.tres" type="StyleBox" id=19]
+[ext_resource path="res://assets/styles/volume_slider/volume_area.tres" type="StyleBox" id=20]
+
+[sub_resource type="DynamicFont" id=47]
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=48]
+default_font = SubResource( 47 )
+
+[sub_resource type="StyleBoxFlat" id=45]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 10.0
+content_margin_bottom = 25.0
+bg_color = Color( 0.105882, 0.109804, 0.113725, 1 )
+
+[sub_resource type="DynamicFont" id=49]
+font_data = ExtResource( 14 )
+
+[node name="MusicPlayer" type="PanelContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -108.0
+mouse_filter = 2
+theme = SubResource( 48 )
+custom_styles/panel = SubResource( 45 )
+script = ExtResource( 10 )
+
+[node name="Divider" type="HBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 1004.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 0, 60 )
+custom_constants/separation = 20
+alignment = 1
+
+[node name="Song" type="HBoxContainer" parent="Divider"]
+margin_right = 236.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+custom_constants/separation = 8
+
+[node name="AlbumArt" type="TextureRect" parent="Divider/Song"]
+margin_right = 73.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 73, 73 )
+expand = true
+stretch_mode = 6
+
+[node name="VBox" type="VBoxContainer" parent="Divider/Song"]
+margin_left = 81.0
+margin_right = 236.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+
+[node name="Title" type="Label" parent="Divider/Song/VBox"]
+margin_right = 155.0
+margin_bottom = 34.0
+size_flags_vertical = 7
+custom_fonts/font = SubResource( 49 )
+valign = 2
+autowrap = true
+clip_text = true
+
+[node name="Artist" type="Label" parent="Divider/Song/VBox"]
+modulate = Color( 1, 1, 1, 0.678431 )
+margin_top = 38.0
+margin_right = 155.0
+margin_bottom = 73.0
+size_flags_vertical = 7
+autowrap = true
+clip_text = true
+
+[node name="Player" type="VBoxContainer" parent="Divider"]
+margin_left = 256.0
+margin_right = 728.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+
+[node name="Buttons" type="HBoxContainer" parent="Divider/Player"]
+margin_right = 472.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 25
+alignment = 1
+
+[node name="Shuffle" type="TextureButton" parent="Divider/Player/Buttons"]
+margin_left = 92.0
+margin_right = 122.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 30, 30 )
+texture_normal = ExtResource( 4 )
+expand = true
+stretch_mode = 5
+
+[node name="Previous" type="TextureButton" parent="Divider/Player/Buttons"]
+margin_left = 147.0
+margin_right = 187.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 6 )
+expand = true
+stretch_mode = 5
+
+[node name="Play" type="TextureButton" parent="Divider/Player/Buttons"]
+margin_left = 212.0
+margin_right = 260.0
+margin_bottom = 48.0
+toggle_mode = true
+texture_normal = ExtResource( 8 )
+texture_pressed = ExtResource( 7 )
+
+[node name="Next" type="TextureButton" parent="Divider/Player/Buttons"]
+margin_left = 285.0
+margin_right = 325.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 40, 40 )
+texture_normal = ExtResource( 5 )
+expand = true
+stretch_mode = 5
+
+[node name="Repeat" type="TextureButton" parent="Divider/Player/Buttons"]
+margin_left = 350.0
+margin_right = 380.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 30, 30 )
+texture_normal = ExtResource( 9 )
+expand = true
+stretch_mode = 5
+
+[node name="Playback" type="HBoxContainer" parent="Divider/Player"]
+margin_top = 52.0
+margin_right = 472.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Current" type="Label" parent="Divider/Player/Playback"]
+margin_right = 50.0
+margin_bottom = 21.0
+rect_min_size = Vector2( 50, 0 )
+size_flags_vertical = 1
+text = "00:00"
+align = 1
+valign = 1
+
+[node name="Progressbar" type="MarginContainer" parent="Divider/Player/Playback"]
+margin_left = 54.0
+margin_right = 424.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+custom_constants/margin_right = 4
+custom_constants/margin_left = 4
+
+[node name="Playback" type="HSlider" parent="Divider/Player/Playback/Progressbar"]
+margin_left = 4.0
+margin_right = 366.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+custom_icons/grabber_highlight = ExtResource( 1 )
+custom_icons/grabber = ExtResource( 2 )
+custom_styles/slider = ExtResource( 17 )
+custom_styles/grabber_area_highlight = ExtResource( 15 )
+custom_styles/grabber_area = ExtResource( 16 )
+ticks_on_borders = true
+
+[node name="End" type="Label" parent="Divider/Player/Playback"]
+margin_left = 428.0
+margin_right = 472.0
+margin_bottom = 21.0
+size_flags_vertical = 1
+text = "00:00"
+align = 1
+valign = 1
+
+[node name="Extra" type="VBoxContainer" parent="Divider"]
+margin_left = 748.0
+margin_right = 984.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+alignment = 1
+
+[node name="Volume" type="HSlider" parent="Divider/Extra"]
+margin_top = 29.0
+margin_right = 236.0
+margin_bottom = 43.0
+custom_icons/grabber_highlight = ExtResource( 1 )
+custom_icons/grabber = ExtResource( 2 )
+custom_styles/slider = ExtResource( 19 )
+custom_styles/grabber_area_highlight = ExtResource( 18 )
+custom_styles/grabber_area = ExtResource( 20 )
+min_value = -45.0
+max_value = 0.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
+[node name="FileInspector" parent="." instance=ExtResource( 12 )]
+
+[node name="TextureTest" parent="." instance=ExtResource( 13 )]
+
+[connection signal="toggled" from="Divider/Player/Buttons/Play" to="." method="_on_Play_toggled"]
+[connection signal="drag_ended" from="Divider/Player/Playback/Progressbar/Playback" to="." method="_on_Playback_drag_ended"]
+[connection signal="drag_started" from="Divider/Player/Playback/Progressbar/Playback" to="." method="_on_Playback_drag_started"]
+[connection signal="value_changed" from="Divider/Player/Playback/Progressbar/Playback" to="." method="_on_Playback_value_changed"]
+[connection signal="value_changed" from="Divider/Extra/Volume" to="." method="_on_Volume_value_changed"]
+[connection signal="file_selected" from="FileInspector" to="." method="_on_FileInspector_file_selected"]
