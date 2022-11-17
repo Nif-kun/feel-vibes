@@ -55,6 +55,11 @@ _global_script_classes=[ {
 "path": "res://scripts/button_icon_switch.gd"
 }, {
 "base": "Object",
+"class": "Music",
+"language": "GDScript",
+"path": "res://scripts/music.gd"
+}, {
+"base": "Object",
 "class": "MusicMetadata",
 "language": "GDScript",
 "path": "res://scripts/music_metadata.gd"
@@ -104,6 +109,7 @@ _global_script_class_icons={
 "DisplayCamera": "",
 "Editor": "",
 "IconButton": "",
+"Music": "",
 "MusicMetadata": "",
 "Notif": "",
 "PropBase": "",
@@ -129,7 +135,7 @@ window/dpi/allow_hidpi=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/atlas_player/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/native_dialogs/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/atlas_player/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/native_dialogs/plugin.cfg" )
 
 [gui]
 

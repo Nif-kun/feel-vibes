@@ -12,19 +12,39 @@ var data := {
 	"Lyrics":""
 }
 
+var file_name : String = "Untitled"
+
+
 func _init(path:String):
 	var MDReader = Defaults.mdreader_script.new()
 	data = MDReader.GetCommon(path)
+	
+	if File.new().file_exists(path):
+		var index_x = path.find_last("/")
+		var index_y = path.find_last("\\")
+		if index_x > -1:
+			file_name = path.substr(index_x+1)
+		elif index_y > -1:
+			file_name = path.substr(index_y+1)
 
 
 func get_title() -> String:
-	return data.get("Title")
+	var new_title = data.get("Title")
+	if new_title != null and new_title.empty():
+		return new_title
+	return file_name
 
 func get_artists() -> PoolStringArray:
-	return data.get("Artists")
+	var artists = data.get("Artists")
+	if artists != null and !artists.empty() and !artists[0].empty():
+		return artists
+	return PoolStringArray(["Unknown"])
 
 func get_artworks() -> Array:
-	return data.get("Artworks")
+	var artworks = data.get("Artworks")
+	if artworks != null and !artworks.empty():
+		return artworks
+	return [null]
 
 func get_album() -> String:
 	return data.get("Album")

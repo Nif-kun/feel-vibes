@@ -9,3 +9,14 @@ F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.dll
 F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.pdb
 F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\Debug\TagLibSharp.dll
 F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.csproj.CopyComplete
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\bin\Debug\FeelVibes.dll
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\bin\Debug\FeelVibes.pdb
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\bin\Debug\TagLibSharp.dll
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.csproj.AssemblyReference.cache
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.AssemblyInfoInputs.cache
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.AssemblyInfo.cs
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.csproj.CoreCompileInputs.cache
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.csproj.CopyComplete
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.dll
+D:\Programming\Dev\Godot\Projects\feel-vibes\.mono\temp\obj\Debug\FeelVibes.pdb
