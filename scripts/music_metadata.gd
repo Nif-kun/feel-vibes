@@ -30,7 +30,7 @@ func _init(path:String):
 
 func get_title() -> String:
 	var new_title = data.get("Title")
-	if new_title != null and new_title.empty():
+	if new_title != null and !new_title.empty():
 		return new_title
 	return file_name
 

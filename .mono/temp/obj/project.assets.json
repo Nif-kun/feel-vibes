@@ -42,20 +42,28 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Larid\\.nuget\\packages\\": {}
+    "C:\\Users\\Nif\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Programming\\Dev\\Godot\\Projects\\feel-vibes\\FeelVibes.csproj",
+      "projectUniqueName": "F:\\Programming\\AppDev\\Projects\\feel-vibes\\FeelVibes.csproj",
       "projectName": "FeelVibes",
-      "projectPath": "D:\\Programming\\Dev\\Godot\\Projects\\feel-vibes\\FeelVibes.csproj",
-      "packagesPath": "C:\\Users\\Larid\\.nuget\\packages\\",
-      "outputPath": "D:\\Programming\\Dev\\Godot\\Projects\\feel-vibes\\.mono\\temp\\obj\\",
+      "projectPath": "F:\\Programming\\AppDev\\Projects\\feel-vibes\\FeelVibes.csproj",
+      "packagesPath": "C:\\Users\\Nif\\.nuget\\packages\\",
+      "outputPath": "F:\\Programming\\AppDev\\Projects\\feel-vibes\\.mono\\temp\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "C:\\Users\\Larid\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Nif\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net472"

@@ -129,6 +129,10 @@ boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.121569, 0.113725, 0.129412, 1 )
 config/icon="res://icon.png"
 
+[audio]
+
+default_bus_layout=""
+
 [display]
 
 window/dpi/allow_hidpi=true
@@ -140,6 +144,15 @@ enabled=PoolStringArray( "res://addons/atlas_player/plugin.cfg", "res://addons/d
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+mp3={
+"loop": false
+}
+ogg_vorbis={
+"loop": false
+}
 
 [input]
 

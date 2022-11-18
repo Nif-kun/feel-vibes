@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/01 Be Honest.mp3-3f1c846285637058efcb1f57c4c22eef.mp3str"
+
+[deps]
+
+source_file="res://sample/01 Be Honest.mp3"
+dest_files=[ "res://.import/01 Be Honest.mp3-3f1c846285637058efcb1f57c4c22eef.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
