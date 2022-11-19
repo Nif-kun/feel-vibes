@@ -164,13 +164,13 @@ margin_bottom = 37.0
 [node name="Menu" type="PanelContainer" parent="Docker"]
 margin_top = 61.5
 margin_right = 250.0
-margin_bottom = 490.5
+margin_bottom = 491.5
 rect_min_size = Vector2( 250, 0 )
 custom_styles/panel = SubResource( 11 )
 
 [node name="VBox" type="VBoxContainer" parent="Docker/Menu"]
 margin_right = 250.0
-margin_bottom = 429.0
+margin_bottom = 430.0
 theme = SubResource( 13 )
 custom_constants/separation = 0
 
@@ -269,18 +269,18 @@ expand_icon = true
 margin_left = 250.0
 margin_top = 61.5
 margin_right = 1024.0
-margin_bottom = 490.5
+margin_bottom = 491.5
 custom_styles/panel = SubResource( 19 )
 
 [node name="DesignTab" type="PanelContainer" parent="Docker/Content"]
 margin_right = 774.0
-margin_bottom = 429.0
+margin_bottom = 430.0
 
 [node name="VBox" type="VBoxContainer" parent="Docker/Content/DesignTab"]
 margin_left = 7.0
 margin_top = 7.0
 margin_right = 767.0
-margin_bottom = 422.0
+margin_bottom = 423.0
 
 [node name="Search" type="HBoxContainer" parent="Docker/Content/DesignTab/VBox"]
 margin_right = 760.0
@@ -305,7 +305,7 @@ custom_styles/normal = SubResource( 20 )
 [node name="Contents" type="ScrollContainer" parent="Docker/Content/DesignTab/VBox"]
 margin_top = 44.0
 margin_right = 760.0
-margin_bottom = 415.0
+margin_bottom = 416.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/bg = SubResource( 21 )
@@ -322,5 +322,5 @@ size_flags_horizontal = 3
 margin_right = 740.0
 
 [node name="MusicPlayer" parent="Docker" instance=ExtResource( 13 )]
-margin_top = -108.5
+margin_top = -107.5
 margin_bottom = -0.5

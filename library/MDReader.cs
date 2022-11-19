@@ -1,7 +1,7 @@
 using Godot;
 using System.IO;
 
-public class MDReader : Godot.Object
+public class MDReader : Object
 {
     public static string GetTitle(string path)
     {

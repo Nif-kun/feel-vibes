@@ -19,7 +19,7 @@
 [ext_resource path="res://assets/styles/volume_slider/volume_area_highlight.tres" type="StyleBox" id=18]
 [ext_resource path="res://assets/styles/volume_slider/volume_slider.tres" type="StyleBox" id=19]
 [ext_resource path="res://assets/styles/volume_slider/volume_area.tres" type="StyleBox" id=20]
-[ext_resource path="res://scripts/textureRect_default.gd" type="Script" id=21]
+[ext_resource path="res://scripts/tweaks/textureRect_default.gd" type="Script" id=21]
 [ext_resource path="res://icon.png" type="Texture" id=22]
 
 [sub_resource type="DynamicFont" id=47]
@@ -116,6 +116,7 @@ margin_left = 92.0
 margin_right = 122.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 30, 30 )
+toggle_mode = true
 texture_normal = ExtResource( 4 )
 expand = true
 stretch_mode = 5
@@ -151,6 +152,7 @@ margin_left = 350.0
 margin_right = 380.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 30, 30 )
+toggle_mode = true
 texture_normal = ExtResource( 9 )
 expand = true
 stretch_mode = 5
@@ -190,7 +192,9 @@ custom_icons/grabber = ExtResource( 2 )
 custom_styles/slider = ExtResource( 17 )
 custom_styles/grabber_area_highlight = ExtResource( 15 )
 custom_styles/grabber_area = ExtResource( 16 )
+max_value = 0.01
 step = 0.01
+value = 0.01
 ticks_on_borders = true
 
 [node name="End" type="Label" parent="Divider/Player/Playback"]
@@ -228,7 +232,11 @@ stream = ExtResource( 11 )
 [node name="FileInspector" parent="." instance=ExtResource( 12 )]
 current_dir = "F:\\Sub\\My Music\\Artists"
 
+[connection signal="toggled" from="Divider/Player/Buttons/Shuffle" to="." method="_on_Shuffle_toggled"]
+[connection signal="pressed" from="Divider/Player/Buttons/Previous" to="." method="_on_Previous_pressed"]
 [connection signal="toggled" from="Divider/Player/Buttons/Play" to="." method="_on_Play_toggled"]
+[connection signal="pressed" from="Divider/Player/Buttons/Next" to="." method="_on_Next_pressed"]
+[connection signal="toggled" from="Divider/Player/Buttons/Repeat" to="." method="_on_Repeat_toggled"]
 [connection signal="drag_ended" from="Divider/Player/Playback/Progressbar/Playback" to="." method="_on_Playback_drag_ended"]
 [connection signal="drag_started" from="Divider/Player/Playback/Progressbar/Playback" to="." method="_on_Playback_drag_started"]
 [connection signal="value_changed" from="Divider/Player/Playback/Progressbar/Playback" to="." method="_on_Playback_value_changed"]

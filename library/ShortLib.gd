@@ -32,7 +32,7 @@ static func get_file_size(path:String, warn:bool=false) -> int:
 	if warn: push_warning("ShortLib[WRN]: file does not exist! (Substituting return value with -1.)")
 	return -1
 
-
+# DEPRECATE type:string has a built in function get_file
 static func get_file_name(path:String, force:bool=false, warn:bool=false) -> String:
 	if File.new().file_exists(path) or force:
 		var index_x = path.find_last("/")
@@ -44,12 +44,12 @@ static func get_file_name(path:String, force:bool=false, warn:bool=false) -> Str
 	elif warn: push_warning("ShortLib[WRN]: file does not exist! (Substituting return value with empty string.)")
 	return ""
 
-
+# DEPRECATE type:string has a built in function get_extension
 static func get_file_extension(path:String) -> String:
 	var index = path.find_last(".")
 	return path.substr(index)
 
-
+# DEPRECATE type:string has a built in function get_base_dir
 static func get_file_dir(path:String, force:bool=false, warn:bool=false) -> String:
 	if File.new().file_exists(path) or force:
 		var index_x = path.find_last("/")

@@ -49,20 +49,35 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/editor/editor.gd"
 }, {
+"base": "Reference",
+"class": "FairNG",
+"language": "GDScript",
+"path": "res://library/FairNG.gd"
+}, {
 "base": "StrictFocusButton",
 "class": "IconButton",
 "language": "GDScript",
-"path": "res://scripts/button_icon_switch.gd"
+"path": "res://scripts/tweaks/button_icon_switch.gd"
 }, {
-"base": "Object",
+"base": "MusicObject",
 "class": "Music",
 "language": "GDScript",
-"path": "res://scripts/music.gd"
+"path": "res://scripts/objects/music.gd"
 }, {
-"base": "Object",
+"base": "MusicObject",
 "class": "MusicMetadata",
 "language": "GDScript",
-"path": "res://scripts/music_metadata.gd"
+"path": "res://scripts/objects/music_metadata.gd"
+}, {
+"base": "Object",
+"class": "MusicObject",
+"language": "GDScript",
+"path": "res://scripts/objects/music_object.gd"
+}, {
+"base": "Object",
+"class": "MusicPlaylist",
+"language": "GDScript",
+"path": "res://scripts/objects/music_playlist.gd"
 }, {
 "base": "PanelContainer",
 "class": "Notif",
@@ -82,17 +97,17 @@ _global_script_classes=[ {
 "base": "Button",
 "class": "StrictFocusButton",
 "language": "GDScript",
-"path": "res://scripts/button_focus_strict.gd"
+"path": "res://scripts/tweaks/button_focus_strict.gd"
 }, {
 "base": "SpinBox",
 "class": "StrictSpinBox",
 "language": "GDScript",
-"path": "res://scripts/spinbox_value_strict.gd"
+"path": "res://scripts/tweaks/spinbox_value_strict.gd"
 }, {
 "base": "LineEdit",
 "class": "SubtleLineEdit",
 "language": "GDScript",
-"path": "res://scripts/line_edit_editable_sublte.gd"
+"path": "res://scripts/tweaks/line_edit_editable_sublte.gd"
 }, {
 "base": "PanelContainer",
 "class": "Viewer",
@@ -108,9 +123,12 @@ _global_script_class_icons={
 "Display": "",
 "DisplayCamera": "",
 "Editor": "",
+"FairNG": "",
 "IconButton": "",
 "Music": "",
 "MusicMetadata": "",
+"MusicObject": "",
+"MusicPlaylist": "",
 "Notif": "",
 "PropBase": "",
 "ShortLib": "",
@@ -133,13 +151,17 @@ config/icon="res://icon.png"
 
 default_bus_layout=""
 
+[autoload]
+
+SceneHandler="*res://scripts/scene_handler.gd"
+
 [display]
 
 window/dpi/allow_hidpi=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/atlas_player/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/native_dialogs/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/atlas_player/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/native_dialogs/plugin.cfg", "res://addons/project-statistics/plugin.cfg" )
 
 [gui]
 
@@ -188,3 +210,8 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_environment="res://default_env.tres"
+
+[statistics]
+
+force_include=PoolStringArray(  )
+ignore=PoolStringArray( "res://.import/*", "res://.github/*", "res://addons/*", "*.import", "res://library/*" )

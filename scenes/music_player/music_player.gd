@@ -1,8 +1,5 @@
 extends PanelContainer
 
-# Issues:
-# > Selecting another music while it is still playing causes reapet be stuck.
-
 # Nodes
 onready var MusicStreamer := $AudioStreamPlayer
 onready var Volume := $Divider/Extra/Volume
@@ -14,24 +11,24 @@ onready var AlbumArt := $Divider/Song/AlbumArt
 onready var Title := $Divider/Song/VBox/Title
 onready var Artist := $Divider/Song/VBox/Artist
 
-# CS-objects
-var MDReader = Defaults.mdreader_script.new()
-var Zipper = Defaults.zipper_script.new()
-
 # Private
 var _master_bus := AudioServer.get_bus_index("Master")
-export var _default_step := 0.01
+var _default_playback_step := 0.01
 
 # Public
-var music : Music
+var music : Music setget set_music, get_music
+var playlist : MusicPlaylist setget set_playlist, get_playlist
 var length := 0.0
+var repeat := false
+var shuffle := false
 var ended := false
 var is_lengthy := false
+export var auto_start := true
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	PlaybackSlider.step = _default_step
+	_default_playback_step = PlaybackSlider.step
 	reset_playback()
 	set_process(false)
 
@@ -51,22 +48,36 @@ func _process(_delta):
 func play():
 	MusicStreamer.stream_paused = false
 	if !MusicStreamer.playing:
-		print("not playing, time to play!")
-		var playback_value = PlaybackSlider.value
-		var playback_max_value = PlaybackSlider.max_value
+		# Note: converting to int ensures the [check] below functions properly
+		# 		floating points can cause unexpected lower/higher values.
+		var playback_value = int(PlaybackSlider.value)
+		var playback_max_value = int(PlaybackSlider.max_value)
 		
-		if playback_value == playback_max_value:
+		if playback_value >= playback_max_value: # [check]
 			playback_value = 0
 			ended = false
 		if !is_processing():
-			print("not processing, time to process!")
 			set_process(true)
 			
 		MusicStreamer.play(playback_value)
 
-
 func pause():
 	MusicStreamer.stream_paused = true
+
+func next():
+	if playlist != null and !playlist.list.empty():
+		if shuffle:
+			playlist.shuffle()
+			set_music(playlist.get_current())
+		elif playlist.get_current() != playlist.get_next():
+			playlist.next() # This is important as it moves the playlist index.
+			set_music(playlist.get_current())
+
+func previous():
+	if playlist != null and !playlist.list.empty():
+		if playlist.get_previous() != playlist.get_previous():
+			playlist.previous() # This is important as it moves the playlist index.
+			set_music(playlist.get_current())
 
 
 func reset_playback():
@@ -78,31 +89,41 @@ func reset_playback():
 	else:
 		CurrentTime.text = "00:00"
 
+
 #Setget Music
 func set_music(new_music:Music):
-	music = new_music
-	length = new_music.length
-	is_lengthy = ShortLib.is_hour(length)
-	print("time_in_hour: ", ShortLib.to_hour(length))
-	print("is_lengthy: ", is_lengthy)
-	reset_playback() # Must be below, func relies on is_lengthy value.
-	MusicStreamer.set_stream(music.audio)
-	
-	# Sets data to widgets
-	PlaybackSlider.max_value = length
-	EndTime.text = ShortLib.time_convert(length)
-	Title.text = new_music.metadata.get_title() # animate overflow text with bbcode
-	Artist.text = new_music.metadata.get_artists()[0]
-	AlbumArt.set_texture(new_music.metadata.get_artworks()[0]) 
-	
-	# Starts music
-	if PlayButton.pressed:
-		play()
-	else:
-		PlayButton.pressed = true
+	if new_music.valid:
+		music = new_music
+		length = new_music.length
+		is_lengthy = ShortLib.is_hour(length)
+		reset_playback() # Must be below, func relies on is_lengthy value.
+		MusicStreamer.set_stream(music.audio)
+		
+		# Sets data to widgets
+		PlaybackSlider.max_value = length
+		EndTime.text = ShortLib.time_convert(length)
+		Title.text = new_music.metadata.get_title() # animate overflow text with bbcode
+		Artist.text = new_music.metadata.get_artists()[0]
+		AlbumArt.set_texture(new_music.metadata.get_artworks()[0]) 
+		
+		# Starts music
+		if auto_start:
+			if PlayButton.pressed:
+				play()
+			else:
+				PlayButton.pressed = true
 
 func get_music() -> Music:
 	return music
+
+
+func set_playlist(music_playlist:MusicPlaylist):
+	if !music_playlist.list.empty():
+		playlist = music_playlist
+		set_music(playlist.get_current())
+
+func get_playlist() -> MusicPlaylist:
+	return playlist
 
 
 # Setget Time
@@ -127,11 +148,14 @@ func _set_end_state(is_end:bool):
 		PlayButton.pressed = false
 		MusicStreamer.stop()
 		set_process(false)
-		print("Stopped...")
+		if !repeat:
+			next()
 
 
 func _on_FileInspector_file_selected(path):
 	var new_music = Music.new(path)
+	print("New music object: ", new_music)
+	print("File path: ", new_music.file_path)
 	set_music(new_music)
 
 
@@ -141,13 +165,11 @@ func _on_Play_toggled(button_pressed):
 	else:
 		pause()
 
+func _on_Next_pressed():
+	next()
 
-func _on_Volume_value_changed(value):
-	AudioServer.set_bus_volume_db(_master_bus, value)
-	if value == Volume.min_value:
-		AudioServer.set_bus_mute(_master_bus, true)
-	else:
-		AudioServer.set_bus_mute(_master_bus, false)
+func _on_Previous_pressed():
+	previous()
 
 
 func _on_Playback_drag_started():
@@ -156,16 +178,30 @@ func _on_Playback_drag_started():
 
 func _on_Playback_drag_ended(_value_changed):
 	if PlayButton.pressed:
-		print("in_drag_end: ", PlaybackSlider.value)
 		MusicStreamer.seek(PlaybackSlider.value)
 		MusicStreamer.stream_paused = false
 
 
+func _on_Shuffle_toggled(button_pressed):
+	shuffle = button_pressed
+
+
+func _on_Repeat_toggled(button_pressed):
+	repeat = button_pressed
+
+
 func _on_Playback_value_changed(value):
-	if is_playing():
+	if !is_playing():
 		PlaybackSlider.step = 1
 		MusicStreamer.seek(PlaybackSlider.value)
-		print("in_val_changed: ",value)
 		CurrentTime.text = ShortLib.time_convert(value)
-	elif PlaybackSlider.step != _default_step:
-		PlaybackSlider.step = _default_step
+	elif PlaybackSlider.step != _default_playback_step:
+		PlaybackSlider.step = _default_playback_step
+
+
+func _on_Volume_value_changed(value):
+	AudioServer.set_bus_volume_db(_master_bus, value)
+	if value == Volume.min_value:
+		AudioServer.set_bus_mute(_master_bus, true)
+	else:
+		AudioServer.set_bus_mute(_master_bus, false)
