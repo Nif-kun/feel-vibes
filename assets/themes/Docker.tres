@@ -1,9 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=2]
 
-[sub_resource type="StyleBoxLine" id=1]
-color = Color( 0, 0, 0, 0 )
-grow_begin = 0.0
-grow_end = 0.0
+[sub_resource type="StyleBoxEmpty" id=1]
 
 [resource]
 HSplitContainer/constants/separation = 0

@@ -1,81 +1,23 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://assets/fonts/GoogleSans/GoogleSans-Medium.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://assets/themes/Docker.tres" type="Theme" id=3]
+[ext_resource path="res://scenes/window/Handle.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/feel_vibes.gd" type="Script" id=3]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/home_white_48dp.svg" type="Texture" id=4]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/account_circle_white_48dp.svg" type="Texture" id=5]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/brush_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/search_white_48dp.svg" type="Texture" id=7]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/library_music_white_48dp.svg" type="Texture" id=8]
-[ext_resource path="res://addons/dockable_container/layout.gd" type="Script" id=9]
-[ext_resource path="res://addons/dockable_container/dockable_container.gd" type="Script" id=10]
-[ext_resource path="res://addons/dockable_container/layout_split.gd" type="Script" id=11]
-[ext_resource path="res://addons/dockable_container/layout_panel.gd" type="Script" id=12]
+[ext_resource path="res://scenes/dev_tools/FileInspector.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/music_player/MusicPlayer.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
-[sub_resource type="Resource" id=2]
-resource_name = "Tabs"
-script = ExtResource( 12 )
-names = PoolStringArray( "Header" )
-current_tab = 0
-
-[sub_resource type="Resource" id=22]
-resource_name = "Tabs"
-script = ExtResource( 12 )
-names = PoolStringArray( "Menu" )
-current_tab = 0
-
-[sub_resource type="Resource" id=23]
-resource_name = "Tabs"
-script = ExtResource( 12 )
-names = PoolStringArray( "Content" )
-current_tab = 0
-
-[sub_resource type="Resource" id=24]
-resource_name = "Split"
-script = ExtResource( 11 )
-direction = 0
-percent = 0.0
-first = SubResource( 22 )
-second = SubResource( 23 )
-
-[sub_resource type="Resource" id=25]
-resource_name = "Tabs"
-script = ExtResource( 12 )
-names = PoolStringArray( "MusicPlayer" )
-current_tab = 0
-
-[sub_resource type="Resource" id=26]
-resource_name = "Split"
-script = ExtResource( 11 )
-direction = 1
-percent = 1.0
-first = SubResource( 24 )
-second = SubResource( 25 )
-
-[sub_resource type="Resource" id=8]
-resource_name = "Split"
-script = ExtResource( 11 )
-direction = 1
-percent = 0.0
-first = SubResource( 2 )
-second = SubResource( 26 )
-
-[sub_resource type="Resource" id=9]
-resource_name = "Layout"
-script = ExtResource( 9 )
-root = SubResource( 8 )
-hidden_tabs = {
-"Widgets": true
-}
-
-[sub_resource type="StyleBoxFlat" id=10]
-bg_color = Color( 0.105882, 0.109804, 0.113725, 1 )
+[sub_resource type="ExternalTexture" id=26]
 
 [sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.132277, 0.135247, 0.138216, 1 )
+expand_margin_right = 3.0
 
 [sub_resource type="DynamicFont" id=12]
 size = 20
@@ -120,67 +62,41 @@ bg_color = Color( 0.160784, 0.160784, 0.160784, 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_styles/panel = SubResource( 1 )
+script = ExtResource( 3 )
 
-[node name="Docker" type="Container" parent="."]
+[node name="VLayout" type="VBoxContainer" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
-theme = ExtResource( 3 )
-script = ExtResource( 10 )
-tabs_visible = false
-layout = SubResource( 9 )
+custom_constants/separation = 0
 
-[node name="Header" type="PanelContainer" parent="Docker"]
-margin_top = 0.5
+[node name="HSplitLayout" type="HSplitContainer" parent="VLayout"]
 margin_right = 1024.0
-margin_bottom = 60.5
-rect_min_size = Vector2( 0, 60 )
-custom_styles/panel = SubResource( 10 )
+margin_bottom = 493.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 3
+custom_icons/grabber = SubResource( 26 )
 
-[node name="HBox" type="HBoxContainer" parent="Docker/Header"]
-margin_right = 1024.0
-margin_bottom = 60.0
-
-[node name="MenuExpand" type="TextureButton" parent="Docker/Header/HBox"]
-margin_bottom = 60.0
-
-[node name="TitleTexture" type="TextureRect" parent="Docker/Header/HBox"]
-margin_left = 4.0
-margin_right = 4.0
-margin_bottom = 60.0
-
-[node name="TitleLabel" type="Label" parent="Docker/Header/HBox"]
-margin_left = 8.0
-margin_top = 23.0
-margin_right = 70.0
-margin_bottom = 37.0
-text = "FeelVibes"
-
-[node name="Path" type="Label" parent="Docker/Header/HBox"]
-margin_left = 74.0
-margin_top = 23.0
-margin_right = 74.0
-margin_bottom = 37.0
-
-[node name="Menu" type="PanelContainer" parent="Docker"]
-margin_top = 61.5
+[node name="Menu" type="PanelContainer" parent="VLayout/HSplitLayout"]
 margin_right = 250.0
-margin_bottom = 491.5
+margin_bottom = 493.0
 rect_min_size = Vector2( 250, 0 )
 custom_styles/panel = SubResource( 11 )
 
-[node name="VBox" type="VBoxContainer" parent="Docker/Menu"]
+[node name="Widgets" type="VBoxContainer" parent="VLayout/HSplitLayout/Menu"]
 margin_right = 250.0
-margin_bottom = 430.0
+margin_bottom = 493.0
+size_flags_horizontal = 3
 theme = SubResource( 13 )
 custom_constants/separation = 0
 
-[node name="Profile" type="MarginContainer" parent="Docker/Menu/VBox"]
+[node name="Profile" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
 margin_right = 250.0
 margin_bottom = 53.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 8
 
-[node name="Button" type="Button" parent="Docker/Menu/VBox/Profile"]
+[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Profile"]
 margin_top = 8.0
 margin_right = 250.0
 margin_bottom = 45.0
@@ -196,14 +112,14 @@ icon = ExtResource( 5 )
 align = 0
 expand_icon = true
 
-[node name="Home" type="MarginContainer" parent="Docker/Menu/VBox"]
+[node name="Home" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
 margin_top = 53.0
 margin_right = 250.0
 margin_bottom = 106.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 8
 
-[node name="Button" type="Button" parent="Docker/Menu/VBox/Home"]
+[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Home"]
 margin_top = 8.0
 margin_right = 250.0
 margin_bottom = 45.0
@@ -219,14 +135,14 @@ icon = ExtResource( 4 )
 align = 0
 expand_icon = true
 
-[node name="Library" type="MarginContainer" parent="Docker/Menu/VBox"]
+[node name="Library" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
 margin_top = 106.0
 margin_right = 250.0
 margin_bottom = 159.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 8
 
-[node name="Button" type="Button" parent="Docker/Menu/VBox/Library"]
+[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Library"]
 margin_top = 8.0
 margin_right = 250.0
 margin_bottom = 45.0
@@ -242,14 +158,14 @@ icon = ExtResource( 8 )
 align = 0
 expand_icon = true
 
-[node name="Design" type="MarginContainer" parent="Docker/Menu/VBox"]
+[node name="Design" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
 margin_top = 159.0
 margin_right = 250.0
 margin_bottom = 212.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 8
 
-[node name="Button" type="Button" parent="Docker/Menu/VBox/Design"]
+[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Design"]
 margin_top = 8.0
 margin_right = 250.0
 margin_bottom = 45.0
@@ -265,28 +181,28 @@ icon = ExtResource( 6 )
 align = 0
 expand_icon = true
 
-[node name="Content" type="PanelContainer" parent="Docker"]
-margin_left = 250.0
-margin_top = 61.5
+[node name="Content" type="PanelContainer" parent="VLayout/HSplitLayout"]
+margin_left = 253.0
 margin_right = 1024.0
-margin_bottom = 491.5
+margin_bottom = 493.0
 custom_styles/panel = SubResource( 19 )
 
-[node name="DesignTab" type="PanelContainer" parent="Docker/Content"]
-margin_right = 774.0
-margin_bottom = 430.0
+[node name="DesignTab" type="PanelContainer" parent="VLayout/HSplitLayout/Content"]
+visible = false
+margin_right = 771.0
+margin_bottom = 493.0
 
-[node name="VBox" type="VBoxContainer" parent="Docker/Content/DesignTab"]
+[node name="VBox" type="VBoxContainer" parent="VLayout/HSplitLayout/Content/DesignTab"]
 margin_left = 7.0
 margin_top = 7.0
-margin_right = 767.0
-margin_bottom = 423.0
+margin_right = 764.0
+margin_bottom = 486.0
 
-[node name="Search" type="HBoxContainer" parent="Docker/Content/DesignTab/VBox"]
-margin_right = 760.0
+[node name="Search" type="HBoxContainer" parent="VLayout/HSplitLayout/Content/DesignTab/VBox"]
+margin_right = 757.0
 margin_bottom = 40.0
 
-[node name="Icon" type="TextureRect" parent="Docker/Content/DesignTab/VBox/Search"]
+[node name="Icon" type="TextureRect" parent="VLayout/HSplitLayout/Content/DesignTab/VBox/Search"]
 margin_right = 40.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 40, 40 )
@@ -294,33 +210,50 @@ texture = ExtResource( 7 )
 expand = true
 stretch_mode = 6
 
-[node name="LineEdit" type="LineEdit" parent="Docker/Content/DesignTab/VBox/Search"]
+[node name="LineEdit" type="LineEdit" parent="VLayout/HSplitLayout/Content/DesignTab/VBox/Search"]
 show_behind_parent = true
 margin_left = 44.0
-margin_right = 760.0
+margin_right = 757.0
 margin_bottom = 40.0
 size_flags_horizontal = 3
 custom_styles/normal = SubResource( 20 )
 
-[node name="Contents" type="ScrollContainer" parent="Docker/Content/DesignTab/VBox"]
+[node name="Contents" type="ScrollContainer" parent="VLayout/HSplitLayout/Content/DesignTab/VBox"]
 margin_top = 44.0
-margin_right = 760.0
-margin_bottom = 416.0
+margin_right = 757.0
+margin_bottom = 479.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/bg = SubResource( 21 )
 scroll_horizontal_enabled = false
 
-[node name="VBox" type="VBoxContainer" parent="Docker/Content/DesignTab/VBox/Contents"]
+[node name="VBox" type="VBoxContainer" parent="VLayout/HSplitLayout/Content/DesignTab/VBox/Contents"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 750.0
+margin_right = 747.0
 margin_bottom = 10.0
 size_flags_horizontal = 3
 
-[node name="Create" type="TextureButton" parent="Docker/Content/DesignTab/VBox/Contents/VBox"]
-margin_right = 740.0
+[node name="Create" type="TextureButton" parent="VLayout/HSplitLayout/Content/DesignTab/VBox/Contents/VBox"]
+margin_right = 737.0
 
-[node name="MusicPlayer" parent="Docker" instance=ExtResource( 13 )]
-margin_top = -107.5
-margin_bottom = -0.5
+[node name="MusicPlayer" parent="VLayout" instance=ExtResource( 13 )]
+unique_name_in_owner = true
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 493.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="Handle" parent="." instance=ExtResource( 2 )]
+visible = false
+anchor_right = 0.0
+margin_right = 1024.0
+margin_bottom = 40.0
+
+[node name="FileInspector" parent="." instance=ExtResource( 9 )]
+current_dir = "F:\\Sub\\My Music\\Artists"
+mode = 2
+
+[connection signal="dir_selected" from="FileInspector" to="." method="_on_FileInspector_dir_selected"]

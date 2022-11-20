@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://scripts/tweaks/button_icon_switch.gd" type="Script" id=1]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/crop_square_white_24dp.svg" type="Texture" id=2]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/window-restore.svg" type="Texture" id=3]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/close_white_24dp.svg" type="Texture" id=4]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/minimize_white_24dp.svg" type="Texture" id=5]
+[ext_resource path="res://assets/themes/presets/astro/aestro.tres" type="Theme" id=6]
+[ext_resource path="res://scripts/tweaks/button_focus_strict.gd" type="Script" id=7]
+[ext_resource path="res://scenes/window/handle.gd" type="Script" id=8]
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.0690195, 0.0690195, 0.0690195, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.517647, 0.517647, 0.517647, 1 )
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.0690195, 0.0690195, 0.0690195, 1 )
+border_color = Color( 0.411765, 0.909804, 0.592157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+content_margin_left = 6.0
+content_margin_right = 6.0
+content_margin_top = 4.0
+content_margin_bottom = 4.0
+bg_color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.411765, 0.909804, 0.592157, 1 )
+
+[node name="Handle" type="HBoxContainer"]
+anchor_right = 1.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 40 )
+size_flags_vertical = 0
+custom_constants/separation = 0
+alignment = 2
+script = ExtResource( 8 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 874.0
+margin_right = 924.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 0 )
+theme = ExtResource( 6 )
+icon = ExtResource( 5 )
+icon_align = 1
+script = ExtResource( 7 )
+
+[node name="Restore" type="Button" parent="."]
+margin_left = 924.0
+margin_right = 974.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 0 )
+custom_styles/hover = SubResource( 2 )
+custom_styles/pressed = SubResource( 1 )
+custom_styles/focus = SubResource( 3 )
+custom_styles/normal = SubResource( 1 )
+toggle_mode = true
+icon = ExtResource( 3 )
+icon_align = 1
+script = ExtResource( 1 )
+sub_icon = ExtResource( 2 )
+replace_on_toggle = true
+
+[node name="Close" type="Button" parent="."]
+margin_left = 974.0
+margin_right = 1024.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 50, 0 )
+theme = ExtResource( 6 )
+icon = ExtResource( 4 )
+icon_align = 1
+script = ExtResource( 7 )

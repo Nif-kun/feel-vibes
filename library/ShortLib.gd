@@ -1,5 +1,7 @@
 class_name ShortLib
-# Description: shortcut library for certain functions to shorten code and avoid repetitions.
+# Description: 
+#	shortcut library for certain functions 
+#	to shorten code and avoid repetitions.
 
 
 static func set_script_all(objects, script):

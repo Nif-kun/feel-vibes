@@ -4,6 +4,7 @@
 
 [node name="FileInspector" type="CanvasLayer"]
 script = ExtResource( 1 )
+current_dir = "C:/Users/Nif/AppData/Roaming/Godot/app_userdata/FeelVibes"
 
 [node name="Button" type="Button" parent="."]
 anchor_left = 0.00585938
@@ -25,10 +26,10 @@ margin_top = -250.0
 margin_right = 322.5
 margin_bottom = 250.0
 rect_min_size = Vector2( 645, 500 )
-window_title = "Open a File"
 resizable = true
-mode = 0
 access = 2
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="dir_selected" from="FileDialog" to="." method="_on_FileDialog_dir_selected"]
 [connection signal="file_selected" from="FileDialog" to="." method="_on_FileDialog_file_selected"]
+[connection signal="files_selected" from="FileDialog" to="." method="_on_FileDialog_files_selected"]

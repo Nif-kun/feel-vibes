@@ -1,5 +1,7 @@
 extends PanelContainer
 
+# IDEA: remember song being played before closing, including timestamp.
+
 # Nodes
 onready var MusicStreamer := $AudioStreamPlayer
 onready var Volume := $Divider/Extra/Volume
@@ -150,13 +152,6 @@ func _set_end_state(is_end:bool):
 		set_process(false)
 		if !repeat:
 			next()
-
-
-func _on_FileInspector_file_selected(path):
-	var new_music = Music.new(path)
-	print("New music object: ", new_music)
-	print("File path: ", new_music.file_path)
-	set_music(new_music)
 
 
 func _on_Play_toggled(button_pressed):

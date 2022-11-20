@@ -3,6 +3,9 @@ class_name MusicMetadata
 
 # IDEA: add setter functions. (Most likely requires MDReader modification.)
 
+# Dependencies:
+#	MDReader by Nif
+
 var data := {
 	"Title":"",
 	"Artists":[],

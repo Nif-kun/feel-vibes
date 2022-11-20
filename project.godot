@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "FileCollection",
+"class": "AudioCollection",
+"language": "GDScript",
+"path": "res://scripts/objects/audio_collection.gd"
+}, {
 "base": "Reference",
 "class": "AudioLoader",
 "language": "GDScript",
@@ -44,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/editor/viewer/camera.gd"
 }, {
+"base": "Reference",
+"class": "Draggable",
+"language": "GDScript",
+"path": "res://library/nui_lib/Control/Draggable.gd"
+}, {
 "base": "PanelContainer",
 "class": "Editor",
 "language": "GDScript",
@@ -54,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://library/FairNG.gd"
 }, {
+"base": "Node",
+"class": "FileCollection",
+"language": "GDScript",
+"path": "res://scripts/objects/file_collection.gd"
+}, {
 "base": "StrictFocusButton",
 "class": "IconButton",
 "language": "GDScript",
@@ -63,6 +78,11 @@ _global_script_classes=[ {
 "class": "Music",
 "language": "GDScript",
 "path": "res://scripts/objects/music.gd"
+}, {
+"base": "Object",
+"class": "MusicLoader",
+"language": "GDScript",
+"path": "res://library/MusicLoader.gd"
 }, {
 "base": "MusicObject",
 "class": "MusicMetadata",
@@ -115,6 +135,7 @@ _global_script_classes=[ {
 "path": "res://scenes/editor/viewer/viewer.gd"
 } ]
 _global_script_class_icons={
+"AudioCollection": "",
 "AudioLoader": "",
 "CameraDrag2D": "",
 "CameraSlide2D": "",
@@ -122,10 +143,13 @@ _global_script_class_icons={
 "Defaults": "",
 "Display": "",
 "DisplayCamera": "",
+"Draggable": "",
 "Editor": "",
 "FairNG": "",
+"FileCollection": "",
 "IconButton": "",
 "Music": "",
+"MusicLoader": "",
 "MusicMetadata": "",
 "MusicObject": "",
 "MusicPlaylist": "",

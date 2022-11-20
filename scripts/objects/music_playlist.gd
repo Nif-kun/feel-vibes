@@ -1,26 +1,43 @@
 extends Object
 class_name MusicPlaylist
 
+# Dependencies:
+#	ShortLib by Nif
+
 # Public 
 var title := ""
+var cover_art : Texture
 var list := [] # Music class array
 
 # Private
 var _FairNG : FairNG
+var _cover_art_path := ""
 var _current_music_index := 0
 var _initial_list_size := 0 # called only on one-run start functions
 var _music_played_count := 0
 
 
-func _init(new_title:String, new_list:=[], index:=0):
+func _init(new_title:String, new_list:=[], cover_art_path:String="", index:=0):
 	title = new_title
+	_cover_art_path = cover_art_path
+	cover_art = ShortLib.load_texture(cover_art_path)
 	list = new_list
 	_current_music_index = _clamp_index(index)
 	_initial_list_size = list.size()
 
 
-func rename(name:String):
-	title = name
+func set_title(new_title:String):
+	title = new_title
+
+func get_title() -> String:
+	return title
+
+func set_cover_art(path:String):
+	_cover_art_path = path
+	cover_art = ShortLib.load_texture(path)
+
+func get_cover_art() -> Texture:
+	return cover_art
 
 func set_list(new_list:Array):
 	list = new_list
@@ -102,23 +119,28 @@ func get_previous() -> Music:
 	return list[_clamp_index(_current_music_index-1)]
 
 
-# Data format: { title:list }
+# CAUTION unsure if setget of data actually properly works.
+# Data format: { "title":title, "cover_art":path, "list":list }
 func set_data(music_list:Array, data:Dictionary):
 	if data.size() > 0:
-		title = data.keys()[0]
-		var path_list = data.get(title)
-		if path_list != null:
-			for path in path_list: # this as baseloop mirrors path_list sequence.
-				for music in music_list:
-					if music.file_path == path:
-						list.append(music)
+		title = data.get("title", "UNTITLED")
+		cover_art = ShortLib.load_texture(data.get("cover_art_path", "")) 
+		var path_list = data.get("music_path_list", [])
+		for path in path_list: # this as baseloop mirrors path_list sequence.
+			for music in music_list:
+				if music.file_path == path:
+					list.append(music)
 	_initial_list_size = list.size()
 
 func get_data() -> Dictionary:
-	var path_list = []
+	var music_path_list = []
 	for music in list:
-		path_list.append(music.file_path)
-	var data = { title:path_list }
+		music_path_list.append(music.file_path)
+	var data = { 
+		"title":title,
+		"cover_art_path":_cover_art_path,
+		"music_path_list":music_path_list
+		}
 	return data
 
 
