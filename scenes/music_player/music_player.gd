@@ -1,20 +1,22 @@
 extends PanelContainer
-
 # IDEA: remember song being played before closing, including timestamp.
+
+# Signals
+signal pressed_lyrics
+signal pressed_artwork
+signal music_selected(music)
 
 # Nodes
 onready var MusicStreamer := $AudioStreamPlayer
-onready var Volume := $Divider/Extra/Volume
 onready var PlayButton := $Divider/Player/Buttons/Play
 onready var PlaybackSlider := $Divider/Player/Playback/Progressbar/Playback
 onready var CurrentTime := $Divider/Player/Playback/Current
 onready var EndTime := $Divider/Player/Playback/End
 onready var AlbumArt := $Divider/Song/AlbumArt
-onready var Title := $Divider/Song/VBox/Title
-onready var Artist := $Divider/Song/VBox/Artist
+onready var Title := $Divider/Song/VBox/Title/Label
+onready var Artist := $Divider/Song/VBox/Artist/Label
 
 # Private
-var _master_bus := AudioServer.get_bus_index("Master")
 var _default_playback_step := 0.01
 
 # Public
@@ -30,19 +32,15 @@ export var auto_start := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	OS.min_window_size = Vector2(850, 500)
 	_default_playback_step = PlaybackSlider.step
 	reset_playback()
 	set_process(false)
 
 
 func _process(_delta):
-	var playback_pos_step = stepify(get_time(), 0.1)
-	var playback_length_step = stepify(length, 0.1)
-	
 	CurrentTime.text = ShortLib.time_convert(get_time())
 	PlaybackSlider.value = get_time()
-	
-	print(playback_pos_step," - ",playback_length_step)
 	_end_state() # occurs once music ends.
 
 func _end_state():
@@ -122,12 +120,11 @@ func set_music(new_music:Music):
 		# Sets data to widgets
 		PlaybackSlider.max_value = length
 		EndTime.text = ShortLib.time_convert(length)
-		# TODO copy spotify move right and left long text.
-#		print(get_font("RichTextLabel/fonts/bold_font").font_data.font_path)
-		Title.bbcode_text = "[b]"+new_music.metadata.get_title()+"[/b]" # animate overflow text with bbcode
-		Artist.bbcode_text = new_music.metadata.get_artists()[0]
+		Title.text = new_music.metadata.get_title() # animate overflow text with bbcode
+		Artist.text = new_music.metadata.get_artists()[0]
 		AlbumArt.set_texture(new_music.metadata.get_artworks()[0]) 
 		
+		emit_signal("music_selected", music)
 		# Starts music
 		if auto_start:
 			play()
@@ -203,9 +200,9 @@ func _on_Playback_value_changed(value):
 		PlaybackSlider.step = _default_playback_step
 
 
-func _on_Volume_value_changed(value):
-	AudioServer.set_bus_volume_db(_master_bus, value)
-	if value == Volume.min_value:
-		AudioServer.set_bus_mute(_master_bus, true)
-	else:
-		AudioServer.set_bus_mute(_master_bus, false)
+func _on_Lyrics_pressed():
+	emit_signal("pressed_lyrics")
+
+
+func _on_Artwork_pressed():
+	emit_signal("pressed_artwork")

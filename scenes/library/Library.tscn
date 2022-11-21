@@ -1,8 +1,41 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/library/library.gd" type="Script" id=1]
+[ext_resource path="res://scenes/library/PlaylistCard.tscn" type="PackedScene" id=2]
 
-[node name="Library" type="PanelContainer"]
+[node name="Library" type="ScrollContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+
+[node name="Margin" type="MarginContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 30
+custom_constants/margin_top = 20
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 20
+
+[node name="Playlists" type="VBoxContainer" parent="Margin"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 994.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HFlowBox" type="HFlowContainer" parent="Margin/Playlists"]
+margin_right = 964.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="PlaylistCard" parent="Margin/Playlists/HFlowBox" instance=ExtResource( 2 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 235.0
+margin_bottom = 300.0

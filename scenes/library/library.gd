@@ -1,4 +1,4 @@
-extends PanelContainer
+extends ScrollContainer
 
 # TODO add tabs: Playlist, Album, Artists
 # TODO turn All and Local into a playlist instead.

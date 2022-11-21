@@ -14,10 +14,12 @@ var data := {
 	"AlbumArtists":[],
 	"Track":-1,
 	"Genres":[],
-	"Lyrics":""
+	"Lyrics":"",
+	"Comment":""
 }
 
 var file_name : String = "Untitled"
+var file_path := ""
 
 
 func _init(path:String=""):
@@ -27,9 +29,9 @@ func _init(path:String=""):
 func read(path:String):
 	verify(path)
 	if valid:
+		file_path = path
 		var MDReader = Defaults.mdreader_script.new()
 		data = MDReader.GetCommon(path)
-		
 		if File.new().file_exists(path):
 			var index_x = path.find_last("/")
 			var index_y = path.find_last("\\")
@@ -58,16 +60,40 @@ func get_artworks() -> Array:
 	return [null]
 
 func get_album() -> String:
-	return data.get("Album")
+	var album = data.get("Album")
+	if album != null:
+		return album 
+	return ""
 
 func get_album_artists() -> PoolStringArray:
-	return data.get("AlbumArtists")
+	var album_artists = data.get("AlbumArtists")
+	if album_artists != null:
+		return album_artists
+	return PoolStringArray(["Unknown"])
 
 func get_track() -> int:
-	return data.get("Track")
+	var track = data.get("Track")
+	if track != null:
+		return track
+	return -1
 
 func get_genres() -> PoolStringArray:
-	return data.get("Genres")
+	return data.get("Genres", [])
 
 func get_lyrics() -> String:
-	return data.get("Lyrics")
+	var lyrics = data.get("Lyrics", "")
+	if lyrics != null:
+		return lyrics
+	return ""
+
+func get_comment() -> String:
+	var comment = data.get("Comment", "")
+	if comment != null:
+		return comment
+	return ""
+
+func set_comment(comment:String):
+	if valid:
+		var MDReader = Defaults.mdreader_script.new()
+		data["Comment"] = comment
+		MDReader.SetComment(file_path, comment)

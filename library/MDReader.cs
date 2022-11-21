@@ -1,9 +1,23 @@
 using Godot;
 using System.IO;
+using System.Linq;
 
 // Music Metadata Reader (MDReader)
 public class MDReader : Object 
 {
+
+	public static void SetComment(string path, string comment) 
+	{
+		var tfile = TagLib.File.Create(@path);
+		tfile.Tag.Comment = comment;
+		tfile.Save();
+	}
+
+	public static string GetComment(string path) 
+	{
+		return TagLib.File.Create(@path).Tag.Comment;
+	}
+
 	public static string GetTitle(string path)
 	{
 		return TagLib.File.Create(@path).Tag.Title;
@@ -65,6 +79,7 @@ public class MDReader : Object
 		commonData.Add("Track", (int)tagFile.Tag.Track);
 		commonData.Add("Genres", tagFile.Tag.Genres);
 		commonData.Add("Lyrics", tagFile.Tag.Lyrics);
+		commonData.Add("Comment", tagFile.Tag.Comment);
 		
 		foreach (var picture in tagFile.Tag.Pictures)
 		{
