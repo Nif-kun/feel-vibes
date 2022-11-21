@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://assets/fonts/GoogleSans/GoogleSans-Medium.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/window/Handle.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/icons/material_ui/white_48dp/search_white_48dp.svg" type="Texture" id=7]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/library_music_white_48dp.svg" type="Texture" id=8]
 [ext_resource path="res://scenes/dev_tools/FileInspector.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=10]
 [ext_resource path="res://scenes/music_player/MusicPlayer.tscn" type="PackedScene" id=13]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -61,6 +62,7 @@ bg_color = Color( 0.160784, 0.160784, 0.160784, 1 )
 [node name="FeelVibes" type="PanelContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 10 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
 

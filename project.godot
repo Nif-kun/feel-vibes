@@ -64,7 +64,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://library/FairNG.gd"
 }, {
-"base": "Node",
+"base": "Object",
 "class": "FileCollection",
 "language": "GDScript",
 "path": "res://scripts/objects/file_collection.gd"
@@ -108,6 +108,11 @@ _global_script_classes=[ {
 "class": "PropBase",
 "language": "GDScript",
 "path": "res://scenes/editor/properties/prop_base.gd"
+}, {
+"base": "RichTextEffect",
+"class": "RichTextVAlign",
+"language": "GDScript",
+"path": "res://scripts/effects/rich_text_valign.gd"
 }, {
 "base": "Reference",
 "class": "ShortLib",
@@ -155,6 +160,7 @@ _global_script_class_icons={
 "MusicPlaylist": "",
 "Notif": "",
 "PropBase": "",
+"RichTextVAlign": "",
 "ShortLib": "",
 "StrictFocusButton": "",
 "StrictSpinBox": "",
@@ -165,7 +171,7 @@ _global_script_class_icons={
 [application]
 
 config/name="FeelVibes"
-run/main_scene="res://scenes/music_player/MusicPlayer.tscn"
+run/main_scene="res://scenes/FeelVibes.tscn"
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.121569, 0.113725, 0.129412, 1 )

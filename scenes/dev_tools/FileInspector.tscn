@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scenes/dev_tools/file_inspector.gd" type="Script" id=1]
+[ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=2]
 
 [node name="FileInspector" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -11,6 +12,7 @@ anchor_left = 0.00585938
 anchor_top = 0.948333
 anchor_right = 0.0722656
 anchor_bottom = 0.988333
+theme = ExtResource( 2 )
 text = "Inspect"
 __meta__ = {
 "_edit_use_anchors_": true
@@ -26,6 +28,7 @@ margin_top = -250.0
 margin_right = 322.5
 margin_bottom = 250.0
 rect_min_size = Vector2( 645, 500 )
+theme = ExtResource( 2 )
 resizable = true
 access = 2
 

@@ -72,6 +72,19 @@ func previous():
 	if _current_music_index > 0:
 		_current_music_index -= 1
 
+func shuffle():
+	if _FairNG == null or _initial_list_size != list.size():
+		_initial_list_size = list.size()
+		_FairNG = FairNG.new(list.size()) 
+	if list.size() > 1:
+		_music_played_count += 1
+		if _music_played_count > list.size():
+			_FairNG.reset_state()
+			_music_played_count = 0
+			return # end function
+		_current_music_index = _FairNG.randi()
+
+
 func reposition(music:Music, index:int):
 	if list.size() > 1: # requires two music, pointless if one only.
 		var selected_music : Music
@@ -89,19 +102,6 @@ func reposition(music:Music, index:int):
 			var new_current_index = list.find(current_music)
 			if new_current_index > 0:
 				_current_music_index = new_current_index
-
-# CAUTION keep watch when testing if fair rng works.
-func shuffle():
-	if _FairNG == null or _initial_list_size != list.size():
-		_initial_list_size = list.size()
-		_FairNG = FairNG.new(list.size()) 
-	if list.size() > 1:
-		_music_played_count += 1
-		if _music_played_count > list.size():
-			_FairNG.reset_state()
-			_music_played_count = 0
-			return # end function
-		_current_music_index = _FairNG.randi()
 
 
 func set_current(index:int):
@@ -144,7 +144,6 @@ func get_data() -> Dictionary:
 	return data
 
 
-# CAUTION potential conversion error as clamp takes float.
 func _clamp_index(index:int) -> int:
 	var max_size = 0
 	if list.size() > 1:

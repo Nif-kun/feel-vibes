@@ -1,8 +1,10 @@
-extends Node
+extends Object
 class_name FileCollection
 
 # Signals
 signal file_collected(list)
+# warning-ignore:unused_signal
+signal thread_finished
 
 # Public
 var list := []
@@ -15,6 +17,8 @@ var _thread := Thread.new()
 func _init(dir_path:String="", limit:=5, skip_hidden:=false, filters:=[], multithread:=true):
 	if !dir_path.empty():
 		open(dir_path, limit, skip_hidden, filters, multithread)
+	# warning-ignore:return_value_discarded
+	connect("thread_finished", self, "_thread_finished")
 
 
 func open(dir_path:String, limit:=5, skip_hidden:=false, filters:=[], multithread:=true):
@@ -40,6 +44,7 @@ func _collect_files_threaded(state:Array):
 		dir.list_dir_begin(true, state[2])
 		_collect_files(dir, 0, state[1], state[2], state[3])
 		call_deferred("emit_signal", "file_collected", list)
+		call_deferred("emit_signal", "thread_finished")
 
 
 func _collect_files(dir:Directory, count:int, limit:int, skip_hidden:bool=false, filter:=[]):
@@ -63,5 +68,6 @@ func _collect_files(dir:Directory, count:int, limit:int, skip_hidden:bool=false,
 	dir.list_dir_end()
 
 
-func _exit_tree():
+func _thread_finished():
 	_thread.wait_to_finish()
+	_thread = Thread.new()

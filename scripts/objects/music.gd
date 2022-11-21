@@ -19,3 +19,5 @@ func read(path:String):
 		metadata = MusicMetadata.new(path)
 		audio = audio_loader.loadfile(path)
 		length = audio.get_length()
+		if length == 0: # this catches corrupted or differently encoded audio files.
+			valid = false
