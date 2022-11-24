@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/library/library.gd" type="Script" id=1]
 [ext_resource path="res://scenes/library/album_category.gd" type="Script" id=2]
 [ext_resource path="res://scenes/library/playlists_category.gd" type="Script" id=3]
 [ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=4]
+[ext_resource path="res://scenes/library/artist_category.gd" type="Script" id=5]
+[ext_resource path="res://scenes/library/library_content.gd" type="Script" id=6]
 
 [node name="Library" type="ScrollContainer"]
 anchor_right = 1.0
@@ -19,6 +21,47 @@ custom_constants/margin_right = 30
 custom_constants/margin_top = 20
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 20
+
+[node name="Content" type="VBoxContainer" parent="Margin"]
+margin_left = 30.0
+margin_top = 20.0
+margin_right = 994.0
+margin_bottom = 580.0
+script = ExtResource( 6 )
+
+[node name="Header" type="MarginContainer" parent="Margin/Content"]
+margin_right = 964.0
+margin_bottom = 200.0
+
+[node name="VBox" type="HBoxContainer" parent="Margin/Content/Header"]
+margin_right = 964.0
+margin_bottom = 200.0
+
+[node name="CoverArt" type="TextureRect" parent="Margin/Content/Header/VBox"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+expand = true
+stretch_mode = 6
+
+[node name="Title" type="Label" parent="Margin/Content/Header/VBox"]
+margin_left = 204.0
+margin_top = 93.0
+margin_right = 204.0
+margin_bottom = 107.0
+
+[node name="List" type="ScrollContainer" parent="Margin/Content"]
+margin_top = 204.0
+margin_right = 964.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBox" type="VBoxContainer" parent="Margin/Content/List"]
+margin_right = 964.0
+size_flags_horizontal = 3
 
 [node name="Categories" type="TabContainer" parent="Margin"]
 margin_left = 30.0
@@ -49,9 +92,13 @@ margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 2 )
 
-[node name="Artists" type="HFlowContainer" parent="Margin/Categories"]
+[node name="Artist" type="HFlowContainer" parent="Margin/Categories"]
 visible = false
 margin_right = 40.0
 margin_bottom = 40.0
+script = ExtResource( 5 )
 
+[connection signal="item_pressed" from="Margin/Content" to="." method="_on_Content_item_pressed"]
 [connection signal="card_pressed" from="Margin/Categories/Playlist" to="." method="_on_ItemCard_pressed"]
+[connection signal="card_pressed" from="Margin/Categories/Album" to="." method="_on_ItemCard_pressed"]
+[connection signal="card_pressed" from="Margin/Categories/Artist" to="." method="_on_ItemCard_pressed"]

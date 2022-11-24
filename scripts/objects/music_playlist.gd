@@ -85,7 +85,7 @@ func shuffle():
 		_current_music_index = _FairNG.randi()
 
 
-func reposition(music:Music, index:int):
+func set_position(music:Music, index:int):
 	if list.size() > 1: # requires two music, pointless if one only.
 		var selected_music : Music
 		for _music in list:
@@ -102,6 +102,11 @@ func reposition(music:Music, index:int):
 			var new_current_index = list.find(current_music)
 			if new_current_index > 0:
 				_current_music_index = new_current_index
+
+func get_position(music:Music) -> int:
+	if !list.empty():
+		return list.find(music)
+	return -1
 
 
 func set_current(index:int):

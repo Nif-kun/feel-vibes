@@ -31,6 +31,7 @@ func refresh_items():
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
+	card_list.clear()
 	load_items()
 
 
@@ -54,5 +55,5 @@ func _visibility_changed():
 		load_items()
 
 
-func _on_ItemCard_pressed(item):
-	emit_signal("card_pressed", item)
+func _on_ItemCard_pressed(item_card):
+	emit_signal("card_pressed", item_card)

@@ -48,7 +48,9 @@ func _on_MusicPlayer_music_selected(music):
 	var comment = music.metadata.get_comment()
 	var lyrics = music.metadata.get_lyrics()
 	if comment.to_lower().get_extension() == "fvd":
-		Artwork.set_animation(comment)
+		var dir = Directory.new()
+		if dir.file_exists(comment):
+			Artwork.set_animation(comment)
 	else:
 		Artwork.reset()
 	if !lyrics.empty():
@@ -59,3 +61,8 @@ func _on_MusicPlayer_music_selected(music):
 
 func _on_Artwork_file_selected(file_path):
 	MusicPlayer.get_playlist().get_current().metadata.set_comment(file_path)
+
+
+func _on_Library_music_selected(music_playlist):
+	print(music_playlist.get_current().metadata.get_title())
+	MusicPlayer.set_playlist(music_playlist)

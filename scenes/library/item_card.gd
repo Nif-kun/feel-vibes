@@ -1,6 +1,7 @@
 extends PanelContainer
 class_name ItemCard
 
+# Signals
 signal pressed(item_card)
 
 # Nodes
