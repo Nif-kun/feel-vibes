@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/tweaks/scroll_container_vscroll_scan.gd" type="Script" id=1]
-[ext_resource path="res://scenes/library/playlist_card.gd" type="Script" id=2]
+[ext_resource path="res://scenes/library/item_card.gd" type="Script" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 1 )

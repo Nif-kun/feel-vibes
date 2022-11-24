@@ -10,7 +10,7 @@
 [ext_resource path="res://scenes/dev_tools/FileInspector.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=10]
 [ext_resource path="res://scenes/artwork/Artwork.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/content.gd" type="Script" id=12]
+[ext_resource path="res://scenes/content_window.gd" type="Script" id=12]
 [ext_resource path="res://scenes/music_player/MusicPlayer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/library/Library.tscn" type="PackedScene" id=14]
 

@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/library/library.gd" type="Script" id=1]
-[ext_resource path="res://scenes/library/PlaylistCard.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/library/album_category.gd" type="Script" id=2]
+[ext_resource path="res://scenes/library/playlists_category.gd" type="Script" id=3]
+[ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=4]
 
 [node name="Library" type="ScrollContainer"]
 anchor_right = 1.0
@@ -18,24 +20,38 @@ custom_constants/margin_top = 20
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 20
 
-[node name="Playlists" type="VBoxContainer" parent="Margin"]
+[node name="Categories" type="TabContainer" parent="Margin"]
 margin_left = 30.0
 margin_top = 20.0
 margin_right = 994.0
 margin_bottom = 580.0
+theme = ExtResource( 4 )
+tab_align = 0
+
+[node name="Playlist" type="HFlowContainer" parent="Margin/Categories"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 39.0
+margin_right = -4.0
+margin_bottom = -4.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource( 3 )
 
-[node name="HFlowBox" type="HFlowContainer" parent="Margin/Playlists"]
-margin_right = 964.0
-margin_bottom = 560.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+[node name="Album" type="HFlowContainer" parent="Margin/Categories"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 39.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 2 )
 
-[node name="PlaylistCard" parent="Margin/Playlists/HFlowBox" instance=ExtResource( 2 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 235.0
-margin_bottom = 300.0
+[node name="Artists" type="HFlowContainer" parent="Margin/Categories"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[connection signal="card_pressed" from="Margin/Categories/Playlist" to="." method="_on_ItemCard_pressed"]

@@ -12,7 +12,7 @@ var list := []
 
 # Private
 var _thread := Thread.new()
-
+var _renew_thread := true
 
 func _init(dir_path:String="", limit:=5, skip_hidden:=false, filters:=[], multithread:=true):
 	if !dir_path.empty():
@@ -70,4 +70,7 @@ func _collect_files(dir:Directory, count:int, limit:int, skip_hidden:bool=false,
 
 func _thread_finished():
 	_thread.wait_to_finish()
-	_thread = Thread.new()
+	if _renew_thread:
+		_thread = Thread.new()
+	else:
+		_thread = null

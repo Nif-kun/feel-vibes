@@ -29,8 +29,7 @@ func _on_Button_pressed():
 
 
 func _collected(value):
-	var local_files_playlist = MusicPlaylist.new("Local Files", [])
-	local_files_playlist.list.append(value)
+	ContentBox.Library.setup(value)
 
 
 func _on_Library_pressed():

@@ -19,6 +19,7 @@ func open(dir_path:String, limit:=5, skip_hidden:=false, filters:=[], multithrea
 		if multithread:
 			yield(self, "thread_finished")
 			var err = _thread.start(self, "_collect_audio", true)
+			_renew_thread = false
 			if err != OK:
 				push_error("FileCollection[ERR]: an error occured while starting the thread. ERR_CODE: "+str(err))
 			return # escapes function

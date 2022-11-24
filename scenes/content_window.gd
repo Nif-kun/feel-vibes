@@ -17,27 +17,19 @@ func _ready():
 
 
 func show_artwork():
-	if _current_visible == null:
-		_current_visible = Artwork
-	else:
-		_current_visible.hide()
-	Artwork.show()
-	_current_visible = Artwork
-
+	_show_node(Artwork)
 
 func show_lyrics():
-	if _current_visible == null:
-		_current_visible = Lyrics
-	else:
-		_current_visible.hide()
-	Lyrics.show()
-	_current_visible = Lyrics
-
+	_show_node(Lyrics)
 
 func show_library():
+	_show_node(Library)
+
+
+func _show_node(node):
 	if _current_visible == null:
-		_current_visible = Library
+		_current_visible = node
 	else:
 		_current_visible.hide()
-	Library.show()
-	_current_visible = Library
+	node.show()
+	_current_visible = node

@@ -5,12 +5,19 @@ extends ScrollContainer
 # TODO make repositionable playlist. 
 # TODO copy playlist on left side, this is for main window. Add search.
 
+# Nodes
+onready var Playlist := $Margin/Categories/Playlist
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func setup(music_list:=[]):
+	Playlist.setup(music_list)
+
+
+func _on_ItemCard_pressed(item):
+	if item is MusicPlaylist:
+		print(item.title)
