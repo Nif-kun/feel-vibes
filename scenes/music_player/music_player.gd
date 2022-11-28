@@ -32,7 +32,7 @@ export var auto_start := true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	OS.min_window_size = Vector2(850, 500)
+	OS.min_window_size = Vector2(1000, 500)
 	_default_playback_step = PlaybackSlider.step
 	reset_playback()
 	set_process(false)

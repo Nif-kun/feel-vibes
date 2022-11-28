@@ -1,0 +1,11 @@
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\ExportRelease\FeelVibes.dll
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\ExportRelease\FeelVibes.pdb
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\bin\ExportRelease\TagLibSharp.dll
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.csproj.AssemblyReference.cache
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.GeneratedMSBuildEditorConfig.editorconfig
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.AssemblyInfoInputs.cache
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.AssemblyInfo.cs
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.csproj.CoreCompileInputs.cache
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.csproj.CopyComplete
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.dll
+F:\Programming\AppDev\Projects\feel-vibes\.mono\temp\obj\ExportRelease\FeelVibes.pdb

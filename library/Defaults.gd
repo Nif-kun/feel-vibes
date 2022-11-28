@@ -31,12 +31,16 @@ static func get_settings_config_file() -> String:
 const EditorScene = "res://scenes/editor/Editor.tscn"
 const FeelVibes = "res://scenes/FeelVibes.tscn"
 
+# Filters
+const image_filter = ["*.png, *.jpg, *.jpeg, *.svg ; Supported Images", "*.jpg ; JPG Images", "*.jpeg ; JPEG Images", "*.png ; PNG Images", "*.svg ; SVG Images"]
+
 # Assets
 const stock_icon = preload("res://assets/icons/material_ui/white_48dp/palette_white_48dp.svg")
 const volume_full = preload("res://assets/icons/material_ui/white_48dp/volume_up_white_48dp.svg")
 const volume_half = preload("res://assets/icons/material_ui/white_48dp/volume_down_white_48dp.svg")
 const volume_empty = preload("res://assets/icons/material_ui/white_48dp/volume_mute_white_24dp.svg")
 const folder_icon = preload("res://assets/icons/material_ui/white_48dp/folder_open_white_48dp.svg")
+const image_icon = preload("res://assets/icons/material_ui/white_48dp/image_white_48dp.svg")
 
 # CS.Scripts
 const zipper_script = preload("res://library/Zipper.cs")

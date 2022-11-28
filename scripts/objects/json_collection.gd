@@ -36,7 +36,10 @@ func _collect_json(multithread:bool):
 		
 		file.open(file_path, File.READ)
 		var data = parse_json(file.get_as_text()) # can produce non-interruptive error
-		temp_list.append(data)
+		if data is Dictionary or data is Array:
+			if data is Dictionary:
+				data["json_file_path"] = file_path
+			temp_list.append(data)
 		file.close()
 		
 		if multithread:

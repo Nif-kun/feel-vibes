@@ -1,7 +1,8 @@
 extends PanelContainer
+class_name MusicItem
 
 # Signals
-signal pressed(music)
+signal pressed(music_item)
 
 # Nodes
 onready var CoverArt := $HBox/CoverArt
@@ -12,6 +13,7 @@ onready var Highlight := $Highlight
 
 # Public
 var music : Music
+var selected := false
 
 
 func _ready():
@@ -42,18 +44,38 @@ func get_music() -> Music:
 	return music
 
 
+func select():
+	Highlight.show()
+	selected = true
+
+func unselect():
+	Highlight.hide()
+	selected = false
+
+
+func get_title() -> String:
+	return Title.text
+
+func get_artists() -> String:
+	return Artist.text
+
+func get_length() -> String:
+	return Length.text
+
+
 func _gui_input(event):
 	if event.is_action_pressed("mouse_left"):
 		if music != null:
-			emit_signal("pressed", music)
+			emit_signal("pressed", self)
+			select()
 
 
 func _on_MusicItem_mouse_entered():
 	Highlight.show()
 
-
 func _on_MusicItem_mouse_exited():
-	Highlight.hide()
+	if !selected:
+		Highlight.hide()
 
 
 func _exit_tree():

@@ -32,11 +32,27 @@ func set_playlist(new_playlist:MusicPlaylist):
 	if new_playlist != null:
 		Title.text = new_playlist.title
 		Title.hint_tooltip = Title.text
+		if new_playlist.cover_art == null:
+			new_playlist.cover_art = Defaults.image_icon
 		CoverArt.texture = new_playlist.cover_art
 		playlist = new_playlist
 
 func get_playlist():
 	return playlist
+
+
+func set_title(title:String):
+	Title.text = title
+
+func get_title() -> String:
+	return Title.text
+
+
+func set_cover_art(texture:Texture):
+	CoverArt.texture = texture
+
+func get_cover_art() -> Texture:
+	return CoverArt.texture
 
 
 func set_editable(flag:bool):
@@ -50,7 +66,6 @@ func _gui_input(event):
 	if event.is_action_pressed("mouse_left"):
 		emit_signal("pressed", self)
 		Highlight.hide()
-		print("uid: ", playlist.id)
 
 
 func _on_MusicCard_mouse_entered():

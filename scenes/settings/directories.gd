@@ -28,6 +28,7 @@ var data = {
 }
 var playlist_dir := Defaults.get_playlist_dir()
 var chords_dir := Defaults.get_chords_dir()
+var music_dir_empty := true
 
 
 func _ready():
@@ -43,7 +44,8 @@ func set_data(new_data:Dictionary):
 	WarnCheckbox.pressed = !data[_key_warn_empty]
 	if data[_key_warn_empty] and data[_key_music].empty():
 		EmptyDirNotif.popup()
-	
+	else:
+		music_dir_empty = false
 
 func get_data() -> Dictionary:
 	data[_key_music] = MusicDir.get_dir()
@@ -73,10 +75,12 @@ func scan_music():
 func scan_playlist():
 	playlist_collection.renew_thread(false)
 	playlist_collection.open(playlist_dir, 1, true, [Defaults.playlist_extension])
+	emit_signal("playlist_collected")
 
 func scan_chords():
 	chords_collection.renew_thread(false)
 	chords_collection.open(chords_dir, 1, true, [Defaults.chords_extension])
+	emit_signal("chords_collected")
 
 
 func _on_Scan_pressed():
@@ -86,3 +90,7 @@ func _on_Scan_pressed():
 func _on_music_collected(music_list):
 	emit_signal("music_collected", music_list)
 	ScanBtn.disabled = false
+
+
+func _on_MusicDir_text_validated(flag):
+	music_dir_empty = !flag

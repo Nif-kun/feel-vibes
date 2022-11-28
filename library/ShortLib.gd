@@ -130,7 +130,7 @@ static func remove_file(file_path:String, check_name:bool=false, warn:bool=false
 	var remove_err
 	if check_name:
 		var file_dir := get_file_dir(file_path, true)
-		var file_name := get_file_name(file_path, true).trim_suffix(get_file_extension(file_path))
+		var file_name := get_file_name(file_path, true).trim_suffix("."+file_path.get_extension())
 		var dir_files := get_dir_files(file_dir)
 		for file in dir_files:
 			if file.to_lower().trim_suffix(get_file_extension(file)) == file_name:

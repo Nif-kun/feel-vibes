@@ -4,7 +4,6 @@ class_name ContentLibrary
 # TODO make repositionable playlist. 
 # TODO copy playlist on left side, this is for main window. Add search.
 
-
 # Signals
 signal music_selected(music_playlist)
 signal setup_complete
@@ -74,3 +73,5 @@ func _on_AddPlaylist_pressed():
 
 func _on_Playlist_deleted():
 	Content.show_previous()
+	if Content.get_previous() == Content.PlaylistCards:
+		AddPlaylistBtn.show()

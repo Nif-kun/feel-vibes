@@ -4,6 +4,9 @@ class_name MusicPlaylist
 # Dependencies:
 #	ShortLib by Nif
 
+# Signals
+signal current_changed(music)
+
 # Public 
 var title := "Untitled"
 var cover_art : Texture
@@ -80,10 +83,12 @@ func remove(music:Music):
 func next():
 	if _current_music_index + 1 < list.size():
 		_current_music_index += 1
+		emit_signal("current_changed", get_current())
 
 func previous():
 	if _current_music_index > 0:
 		_current_music_index -= 1
+		emit_signal("current_changed", get_current())
 
 func shuffle():
 	if _FairNG == null or _initial_list_size != list.size():
@@ -96,6 +101,7 @@ func shuffle():
 			_music_played_count = 0
 			return # end function
 		_current_music_index = _FairNG.randi()
+		emit_signal("current_changed", get_current())
 
 
 func set_position(music:Music, index:int):
@@ -137,13 +143,13 @@ func get_previous() -> Music:
 	return list[_clamp_index(_current_music_index-1)]
 
 
-# CAUTION unsure if setget of data actually properly works.
 # Data format: {"id":id, "title":title, "cover_art":path, "list":list }
 func set_data(music_list:Array, data:Dictionary):
 	if data.size() > 0:
 		id = data.get("id", UUID.v4())
 		title = data.get("title", "Untitled")
-		cover_art = ShortLib.load_texture(data.get("cover_art_path", "")) 
+		_cover_art_path = data.get("cover_art_path", "")
+		cover_art = ShortLib.load_texture(_cover_art_path)
 		var path_list = data.get("music_path_list", [])
 		for path in path_list: # this as baseloop mirrors path_list sequence.
 			for music in music_list:

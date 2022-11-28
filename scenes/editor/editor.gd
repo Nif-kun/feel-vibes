@@ -119,4 +119,6 @@ func _on_SaveFile_file_selected(file):
 
 
 func _on_Return_pressed():
-	assert(get_tree().change_scene(Defaults.FeelVibes) == OK, "Editor[ERR]: Failed  to load FeelVibes!")
+	var err = get_tree().change_scene(Defaults.FeelVibes)
+	if err != OK:
+		print("Editor[ERR]: Failed  to load FeelVibes!")

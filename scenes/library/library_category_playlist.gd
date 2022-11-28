@@ -18,12 +18,13 @@ func _custom_fill(music_list:Array, multithread:=true):
 	# Construct Local Files default
 	var local_files_playlist = MusicPlaylist.new("Local Files", music_list)
 	local_files_playlist.cover_art = Defaults.folder_icon
-	add_card(local_files_playlist, true)
+	add_card(local_files_playlist)
 	
 	# Collect playlists
 	var json_collection = JSONCollection.new(Defaults.get_playlist_dir(), 1, true, [], false)
 	for data in json_collection.list:
 		var playlist = MusicPlaylist.new()
+		playlist.set_file_path(data["json_file_path"])
 		if data is Dictionary:
 			playlist.set_data(music_list, data)
 			playlist_list.append(playlist)
