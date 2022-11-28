@@ -50,9 +50,9 @@ func _on_mouse_entered():
 	self_modulate = secondary_color
 
 func _on_mouse_exited():
-	if !on_toggle:
+	if !on_toggle and (on_focus and get_focus_owner() != self):
 		self_modulate = primary_color
-	elif !pressed:
+	elif !pressed and (on_focus and get_focus_owner() != self):
 		self_modulate = primary_color
 
 func _on_focus_entered():

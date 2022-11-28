@@ -1,59 +1,61 @@
-extends HFlowContainer
+extends AutoGrid
 class_name LibraryCategory
 
+# CAUTION: multi-threading causes un-catchable crashes. It is not recommended!
+
 # Signals
-signal card_pressed(item)
+signal card_pressed(music_card)
+# warning-ignore:unused_signal
+signal thread_finished
 
 # Private
-var _item_card_scene = preload("res://scenes/library/ItemCard.tscn")
-var _built := false
+var _music_card_scene = preload("res://scenes/library/MusicCard.tscn")
 var _thread : Thread
 
 # Public
-var item_list := [] # an array of Objects (depending on use)
-var card_list := [] # an array of ItemCard
+var card_list := [] # an array of MusicCard
 
 
-func _ready():
-	# warning-ignore:return_value_discarded
-	connect("visibility_changed", self, "_visibility_changed")
-
-
-func setup(items:Array):
-	item_list = items
-
-
-func load_items(): # Interface
-	pass
-
-
-func refresh_items():
-	for child in get_children():
-		remove_child(child)
-		child.queue_free()
-	card_list.clear()
-	load_items()
-
-
-func add_card(title:String, cover_art:Texture, object):
-	var item_card = _item_card_scene.instance()
-	if item_card is ItemCard:
-		item_card.set_item(title, cover_art, object)
+# warning-ignore:unused_argument
+func fill(music_list:Array, multithread:=false): # Override
+	clear()
+	if multithread:
+		_thread = Thread.new()
 		# warning-ignore:return_value_discarded
-		item_card.connect("pressed", self, "_on_ItemCard_pressed")
-	card_list.append(item_card)
-	add_child(item_card)
+		connect("thread_finished", self, "_on_Thread_finished")
+
+func clear():
+	for child in get_children():
+		if child is MusicCard:
+			remove_child(child)
+	card_list.clear()
 
 
-func remove_card(item_card): #might be string or object itself
-	card_list.erase(item_card)
-	remove_child(item_card)
+func add_card(playlist:MusicPlaylist, editable:=false):
+	var music_card = _music_card_scene.instance()
+	if music_card is MusicCard:
+		music_card.set_playlist(playlist)
+		music_card.set_editable(editable)
+		# warning-ignore:return_value_discarded
+		music_card.connect("pressed", self, "_on_MusicCard_pressed")
+	card_list.append(music_card)
+	add_child(music_card)
+
+func remove_card(music_card:MusicCard):
+	card_list.erase(music_card)
+	remove_child(music_card)
 
 
-func _visibility_changed():
-	if visible and !_built:
-		load_items()
+func _on_MusicCard_pressed(music_card):
+	emit_signal("card_pressed", music_card)
 
 
-func _on_ItemCard_pressed(item_card):
-	emit_signal("card_pressed", item_card)
+func _on_Thread_finished():
+	if _thread != null:
+		_thread.wait_to_finish()
+		_thread = null
+
+
+func _exit_tree():
+	if _thread != null:
+		_thread.wait_to_finish()

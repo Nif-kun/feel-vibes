@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/icons/material_ui/white_48dp/edit_white_48dp.svg" type="Texture" id=1]
+[ext_resource path="res://scenes/component/label_edit.gd" type="Script" id=2]
+[ext_resource path="res://scripts/tweaks/line_edit_editable_sublte.gd" type="Script" id=3]
+[ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=4]
+
+[node name="LabelEdit" type="HBoxContainer"]
+anchor_left = 0.26123
+anchor_top = 0.47
+anchor_right = 0.73877
+anchor_bottom = 0.53
+margin_bottom = 3.05176e-05
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource( 4 )
+custom_constants/separation = 0
+script = ExtResource( 2 )
+
+[node name="LineEdit" type="LineEdit" parent="."]
+margin_right = 453.0
+margin_bottom = 36.0
+size_flags_horizontal = 3
+theme_type_variation = "LabelEdit"
+editable = false
+expand_to_text_length = true
+caret_blink = true
+caret_blink_speed = 0.5
+script = ExtResource( 3 )
+
+[node name="Button" type="Button" parent="."]
+margin_left = 453.0
+margin_right = 489.0
+margin_bottom = 36.0
+rect_min_size = Vector2( 36, 0 )
+icon = ExtResource( 1 )
+flat = true
+expand_icon = true
+
+[connection signal="mouse_entered" from="LineEdit" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LineEdit" to="." method="_on_mouse_exited"]
+[connection signal="text_changed" from="LineEdit" to="." method="_on_LabelLine_text_changed"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_EditBtn_pressed"]

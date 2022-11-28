@@ -6,7 +6,7 @@ using System.IO.Compression;
 using DotFile = System.IO.File;
 using DotImage = System.Drawing.Image;
 
-public class Zipper : Godot.Object
+public class Zipper : Reference
 {
 
 	public static void Zip(String filePath, String zipPathFull, bool overwrite = true, bool deleteDirectoryContent = false)

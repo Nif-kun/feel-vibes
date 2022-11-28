@@ -1,0 +1,125 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/settings/DirLineEdit.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/settings/settings.gd" type="Script" id=2]
+[ext_resource path="res://scenes/settings/directories.gd" type="Script" id=3]
+[ext_resource path="res://scripts/tweaks/label_notif.gd" type="Script" id=4]
+[ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+content_margin_left = 20.0
+content_margin_right = 20.0
+content_margin_top = 20.0
+content_margin_bottom = 20.0
+
+[node name="Settings" type="PanelContainer"]
+margin_right = 824.0
+margin_bottom = 493.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Content" type="HBoxContainer" parent="."]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 804.0
+margin_bottom = 473.0
+
+[node name="Left" type="VBoxContainer" parent="Content"]
+margin_right = 390.0
+margin_bottom = 453.0
+size_flags_horizontal = 3
+custom_constants/separation = 20
+
+[node name="Settings" type="Label" parent="Content/Left"]
+margin_right = 390.0
+margin_bottom = 14.0
+theme_type_variation = "H1Label"
+text = "Settings"
+
+[node name="Directories" type="VBoxContainer" parent="Content/Left"]
+margin_top = 34.0
+margin_right = 390.0
+margin_bottom = 140.0
+script = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Content/Left/Directories"]
+margin_right = 390.0
+margin_bottom = 14.0
+theme_type_variation = "H3Label"
+text = "Directories:"
+
+[node name="Margin" type="MarginContainer" parent="Content/Left/Directories"]
+margin_top = 18.0
+margin_right = 390.0
+margin_bottom = 106.0
+custom_constants/margin_left = 15
+
+[node name="VBox" type="VBoxContainer" parent="Content/Left/Directories/Margin"]
+margin_left = 15.0
+margin_right = 390.0
+margin_bottom = 88.0
+custom_constants/separation = 7
+
+[node name="NotifHandle" type="HBoxContainer" parent="Content/Left/Directories/Margin/VBox"]
+margin_right = 375.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Content/Left/Directories/Margin/VBox/NotifHandle"]
+margin_top = 5.0
+margin_right = 101.0
+margin_bottom = 19.0
+theme_type_variation = "ItallicLabel"
+text = "Disable warning"
+
+[node name="CheckBox" type="CheckBox" parent="Content/Left/Directories/Margin/VBox/NotifHandle"]
+margin_left = 105.0
+margin_right = 129.0
+margin_bottom = 24.0
+
+[node name="MusicDir" parent="Content/Left/Directories/Margin/VBox" instance=ExtResource( 1 )]
+margin_top = 31.0
+margin_right = 375.0
+margin_bottom = 61.0
+label = "Music:"
+invalid_color = Color( 0.823529, 0.172549, 0.172549, 1 )
+
+[node name="Scan" type="Button" parent="Content/Left/Directories/Margin/VBox"]
+margin_top = 68.0
+margin_right = 375.0
+margin_bottom = 88.0
+theme_type_variation = "SettingsButton"
+text = "Scan"
+
+[node name="Notif" type="Node" parent="Content/Left/Directories"]
+
+[node name="Control" type="Control" parent="Content/Left/Directories/Notif"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 5 )
+
+[node name="EmptyDir" type="Label" parent="Content/Left/Directories/Notif/Control"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.0
+margin_top = -15.5
+margin_right = 137.0
+margin_bottom = 15.5
+theme_type_variation = "WarnLabel"
+text = "Music directory is empty! Add a directory or disable warning in Settings."
+align = 1
+valign = 1
+autowrap = true
+script = ExtResource( 4 )
+wait_time = 3
+
+[node name="Right" type="VBoxContainer" parent="Content"]
+margin_left = 394.0
+margin_right = 784.0
+margin_bottom = 453.0
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="Content/Left/Directories/Margin/VBox/Scan" to="Content/Left/Directories" method="_on_Scan_pressed"]

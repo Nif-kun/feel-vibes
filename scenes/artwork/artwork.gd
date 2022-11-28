@@ -1,4 +1,5 @@
 extends PanelContainer
+class_name ContentArtwork
 
 # Signals
 signal file_selected(file_path)
@@ -15,7 +16,7 @@ onready var OpenDialog := $NativeDialogOpenFile
 
 # Paths
 var temp_dir := Defaults.get_temp_dir()
-var config_file := Defaults.config_file
+var config_file := Defaults.fvd_config_file
 var project_extension := Defaults.project_extension
 
 # Exports

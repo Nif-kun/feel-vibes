@@ -1,0 +1,100 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scripts/shader/rounder.gdshader" type="Shader" id=1]
+[ext_resource path="res://scenes/library/music_card.gd" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_top = 13.0
+bg_color = Color( 0.164706, 0.152941, 0.196078, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = ExtResource( 1 )
+shader_param/color = Color( 1, 1, 1, 1 )
+shader_param/radius = 0.083
+shader_param/size = Vector2( 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 0.0313726 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.627451, 0.592157, 0.733333, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 13.0
+
+[node name="MusicCard" type="PanelContainer"]
+anchor_left = 0.409668
+anchor_top = 0.275
+anchor_right = 0.590332
+anchor_bottom = 0.725
+rect_min_size = Vector2( 185, 270 )
+size_flags_horizontal = 3
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBox" type="VBoxContainer" parent="."]
+margin_top = 13.0
+margin_right = 185.0
+margin_bottom = 270.0
+
+[node name="CoverArt" type="TextureRect" parent="VBox"]
+material = SubResource( 7 )
+margin_right = 185.0
+margin_bottom = 166.0
+rect_min_size = Vector2( 0, 155 )
+rect_clip_content = true
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 64.58
+expand = true
+stretch_mode = 6
+
+[node name="Title" type="MarginContainer" parent="VBox"]
+margin_top = 170.0
+margin_right = 185.0
+margin_bottom = 257.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 33.75
+custom_constants/margin_right = 13
+custom_constants/margin_top = 2
+custom_constants/margin_left = 13
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="VBox/Title"]
+margin_left = 13.0
+margin_top = 2.0
+margin_right = 172.0
+margin_bottom = 82.0
+mouse_filter = 1
+size_flags_vertical = 1
+theme_type_variation = "LabelBold"
+text = "UNTITLED"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+
+[node name="Highlight" type="Panel" parent="."]
+visible = false
+margin_top = 13.0
+margin_right = 185.0
+margin_bottom = 270.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 8 )
+
+[connection signal="mouse_entered" from="." to="." method="_on_MusicCard_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_MusicCard_mouse_exited"]
+[connection signal="resized" from="." to="." method="_resized"]

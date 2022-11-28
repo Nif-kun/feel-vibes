@@ -21,4 +21,7 @@ func _remove_focus(event:InputEvent):
 func _return_focus(event:InputEvent):
 	if get_focus_owner() == null:
 		if event.is_action_pressed("ui_focus_next"):
-			_prev_focus_owner.grab_focus()
+			if _prev_focus_owner != null:
+				_prev_focus_owner.grab_focus()
+
+

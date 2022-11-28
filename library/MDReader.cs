@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 
 // Music Metadata Reader (MDReader)
-public class MDReader : Object 
+public class MDReader : Reference
 {
 
 	public static void SetComment(string path, string comment) 

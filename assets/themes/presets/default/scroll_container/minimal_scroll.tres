@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=5 format=2]
+
+[ext_resource path="res://assets/themes/presets/default/regular_font.tres" type="DynamicFont" id=1]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 0.254902, 0.254902, 0.254902, 1 )
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxLine" id=2]
+color = Color( 0.290196, 0.290196, 0.290196, 1 )
+thickness = 10
+vertical = true
+
+[sub_resource type="StyleBoxLine" id=3]
+color = Color( 0.133333, 0.133333, 0.133333, 1 )
+thickness = 10
+vertical = true
+
+[resource]
+default_font = ExtResource( 1 )
+VScrollBar/styles/grabber = SubResource( 1 )
+VScrollBar/styles/grabber_highlight = SubResource( 2 )
+VScrollBar/styles/grabber_pressed = SubResource( 2 )
+VScrollBar/styles/scroll = SubResource( 3 )
+VScrollBar/styles/scroll_focus = SubResource( 3 )

@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=31 format=2]
 
+[ext_resource path="res://scripts/tweaks/button_icon_switch.gd" type="Script" id=1]
 [ext_resource path="res://scenes/window/Handle.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/feel_vibes.gd" type="Script" id=3]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/home_white_48dp.svg" type="Texture" id=4]
@@ -7,12 +8,18 @@
 [ext_resource path="res://assets/icons/material_ui/white_48dp/brush_white_48dp.svg" type="Texture" id=6]
 [ext_resource path="res://scenes/lyrics/Lyrics.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/icons/material_ui/white_48dp/library_music_white_48dp.svg" type="Texture" id=8]
-[ext_resource path="res://scenes/dev_tools/FileInspector.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/icons/material_ui/custom/loading_chunk.png" type="Texture" id=9]
 [ext_resource path="res://assets/themes/presets/default/default.tres" type="Theme" id=10]
 [ext_resource path="res://scenes/artwork/Artwork.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/content_window.gd" type="Script" id=12]
+[ext_resource path="res://scenes/content.gd" type="Script" id=12]
 [ext_resource path="res://scenes/music_player/MusicPlayer.tscn" type="PackedScene" id=13]
 [ext_resource path="res://scenes/library/Library.tscn" type="PackedScene" id=14]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/library_music_white_filled_48dp.svg" type="Texture" id=15]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/brush_white_filled_48dp.svg" type="Texture" id=16]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/settings_white_filled_48dp.svg" type="Texture" id=17]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/settings_white_48dp.svg" type="Texture" id=18]
+[ext_resource path="res://scenes/settings/Settings.tscn" type="PackedScene" id=19]
+[ext_resource path="res://addons/atlas_player/atlas_player.gd" type="Script" id=20]
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
@@ -21,13 +28,14 @@ bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
 
 [sub_resource type="StyleBoxFlat" id=11]
 content_margin_left = 20.0
-content_margin_top = 50.0
+content_margin_top = 90.0
+content_margin_bottom = 12.0
 bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
 expand_margin_right = 3.0
 
 [sub_resource type="StyleBoxFlat" id=14]
-content_margin_left = 20.0
-bg_color = Color( 0.458824, 0.239216, 0.94902, 1 )
+content_margin_left = 25.0
+bg_color = Color( 0.403922, 0.262745, 0.717647, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -36,8 +44,8 @@ expand_margin_top = 8.0
 expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxFlat" id=15]
-content_margin_left = 20.0
-bg_color = Color( 0.6, 0.6, 0.6, 0.109804 )
+content_margin_left = 25.0
+bg_color = Color( 1, 1, 1, 0.109804 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
@@ -46,6 +54,7 @@ expand_margin_top = 8.0
 expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxEmpty" id=16]
+content_margin_left = 25.0
 
 [sub_resource type="StyleBoxEmpty" id=17]
 content_margin_left = 25.0
@@ -53,6 +62,11 @@ content_margin_left = 25.0
 [sub_resource type="ButtonGroup" id=18]
 
 [sub_resource type="StyleBoxEmpty" id=27]
+
+[sub_resource type="AtlasTexture" id=29]
+flags = 4
+atlas = ExtResource( 9 )
+region = Rect2( 0, 0, 200, 200 )
 
 [node name="FeelVibes" type="PanelContainer"]
 anchor_right = 1.0
@@ -82,25 +96,18 @@ margin_bottom = 493.0
 rect_min_size = Vector2( 200, 0 )
 custom_styles/panel = SubResource( 11 )
 
-[node name="Widgets" type="VBoxContainer" parent="VLayout/HSplitLayout/Menu"]
+[node name="Main" type="VBoxContainer" parent="VLayout/HSplitLayout/Menu"]
 margin_left = 20.0
-margin_top = 50.0
+margin_top = 90.0
 margin_right = 200.0
-margin_bottom = 493.0
+margin_bottom = 481.0
 size_flags_horizontal = 3
-custom_constants/separation = 0
+custom_constants/separation = 20
 
-[node name="Profile" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
+[node name="Profile" type="Button" parent="VLayout/HSplitLayout/Menu/Main"]
 visible = false
-margin_right = 250.0
-margin_bottom = 53.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-
-[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Profile"]
-margin_top = 8.0
-margin_right = 250.0
-margin_bottom = 45.0
+margin_right = 180.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 theme_type_variation = "TextMenuButton"
 custom_styles/hover = SubResource( 14 )
@@ -114,18 +121,12 @@ icon = ExtResource( 5 )
 align = 0
 expand_icon = true
 
-[node name="Home" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
+[node name="Home" type="Button" parent="VLayout/HSplitLayout/Menu/Main"]
 visible = false
-margin_right = 250.0
-margin_bottom = 53.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-
-[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Home"]
-margin_top = 8.0
-margin_right = 250.0
-margin_bottom = 45.0
+margin_right = 180.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
+theme_type_variation = "TextMenuButton"
 custom_styles/hover = SubResource( 14 )
 custom_styles/pressed = SubResource( 15 )
 custom_styles/focus = SubResource( 16 )
@@ -137,52 +138,72 @@ icon = ExtResource( 4 )
 align = 0
 expand_icon = true
 
-[node name="Library" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
+[node name="Library" type="Button" parent="VLayout/HSplitLayout/Menu/Main"]
 margin_right = 180.0
-margin_bottom = 53.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-
-[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Library"]
-margin_top = 8.0
-margin_right = 180.0
-margin_bottom = 45.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 theme_type_variation = "TextMenuButton"
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/normal = SubResource( 17 )
 toggle_mode = true
+pressed = true
 group = SubResource( 18 )
 text = " Library"
 icon = ExtResource( 8 )
 align = 0
 expand_icon = true
+script = ExtResource( 1 )
+strict_focus = false
+sub_icon = ExtResource( 15 )
+on_toggle = true
+on_hover = true
+on_focus = true
+start_sub = true
 
-[node name="Design" type="MarginContainer" parent="VLayout/HSplitLayout/Menu/Widgets"]
-margin_top = 53.0
+[node name="Design" type="Button" parent="VLayout/HSplitLayout/Menu/Main"]
+margin_top = 57.0
 margin_right = 180.0
-margin_bottom = 106.0
-custom_constants/margin_top = 8
-custom_constants/margin_bottom = 8
-
-[node name="Button" type="Button" parent="VLayout/HSplitLayout/Menu/Widgets/Design"]
-margin_top = 8.0
-margin_right = 180.0
-margin_bottom = 45.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 0, 37 )
 theme_type_variation = "TextMenuButton"
-custom_styles/hover = SubResource( 14 )
-custom_styles/pressed = SubResource( 15 )
-custom_styles/focus = SubResource( 16 )
-custom_styles/normal = SubResource( 17 )
 toggle_mode = true
 group = SubResource( 18 )
 text = "Design"
 icon = ExtResource( 6 )
 align = 0
 expand_icon = true
+script = ExtResource( 1 )
+strict_focus = false
+sub_icon = ExtResource( 16 )
+on_toggle = true
+on_hover = true
+on_focus = true
+
+[node name="Sub" type="VBoxContainer" parent="VLayout/HSplitLayout/Menu"]
+margin_left = 20.0
+margin_top = 90.0
+margin_right = 200.0
+margin_bottom = 481.0
+mouse_filter = 2
+alignment = 2
+
+[node name="Settings" type="Button" parent="VLayout/HSplitLayout/Menu/Sub"]
+margin_top = 361.0
+margin_right = 110.0
+margin_bottom = 391.0
+rect_min_size = Vector2( 110, 30 )
+size_flags_horizontal = 0
+theme_type_variation = "TextMenuSubButton"
+toggle_mode = true
+group = SubResource( 18 )
+text = "Settings"
+icon = ExtResource( 18 )
+align = 0
+expand_icon = true
+script = ExtResource( 1 )
+strict_focus = false
+sub_icon = ExtResource( 17 )
+on_toggle = true
+on_hover = true
+on_focus = true
 
 [node name="Content" type="PanelContainer" parent="VLayout/HSplitLayout"]
 margin_left = 200.0
@@ -198,6 +219,7 @@ margin_right = 824.0
 margin_bottom = 493.0
 
 [node name="Artwork" parent="VLayout/HSplitLayout/Content" instance=ExtResource( 11 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 824.0
@@ -205,10 +227,14 @@ margin_bottom = 493.0
 _auto_start = true
 
 [node name="Lyrics" parent="VLayout/HSplitLayout/Content" instance=ExtResource( 7 )]
+visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 824.0
 margin_bottom = 493.0
+
+[node name="Settings" parent="VLayout/HSplitLayout/Content" instance=ExtResource( 19 )]
+visible = false
 
 [node name="MusicPlayer" parent="VLayout" instance=ExtResource( 13 )]
 unique_name_in_owner = true
@@ -225,43 +251,39 @@ anchor_right = 0.0
 margin_right = 1024.0
 margin_bottom = 40.0
 
-[node name="FileInspector" parent="." instance=ExtResource( 9 )]
-current_dir = "F:\\Sub\\My Music\\Artists"
-mode = 2
-
-[node name="FileInspector2" parent="." instance=ExtResource( 9 )]
-current_dir = "C:\\Users\\Nif\\Downloads"
-mode = 0
-
-[node name="Button" parent="FileInspector2" index="0"]
-anchor_left = 0.0986328
-anchor_right = 0.165039
-anchor_bottom = 0.993333
-
-[node name="Control" type="Control" parent="."]
+[node name="Loading" type="VBoxContainer" parent="."]
+visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
-mouse_filter = 2
+alignment = 1
 
-[node name="Button" type="Button" parent="Control"]
-anchor_left = 0.1875
-anchor_top = 0.946667
-anchor_right = 0.257813
-anchor_bottom = 0.993333
-margin_right = -5.0
-text = "GetFVD"
-__meta__ = {
-"_edit_use_anchors_": true
-}
+[node name="Label" type="Label" parent="Loading"]
+margin_top = 180.0
+margin_right = 1024.0
+margin_bottom = 216.0
+theme_type_variation = "H1Label"
+text = "Loading Music..."
+align = 1
 
-[connection signal="pressed" from="VLayout/HSplitLayout/Menu/Widgets/Library/Button" to="." method="_on_Library_pressed"]
+[node name="AtlasPlayer" type="TextureRect" parent="Loading"]
+margin_top = 220.0
+margin_right = 1024.0
+margin_bottom = 420.0
+texture = SubResource( 29 )
+stretch_mode = 4
+script = ExtResource( 20 )
+atlas_texture = ExtResource( 9 )
+hframe = 20
+vframe = 6
+end_frame = 120
+speed = 0.03
+auto_start = true
+
+[connection signal="pressed" from="VLayout/HSplitLayout/Menu/Main/Library" to="." method="_on_Library_pressed"]
+[connection signal="pressed" from="VLayout/HSplitLayout/Menu/Main/Design" to="." method="_on_Design_pressed"]
+[connection signal="pressed" from="VLayout/HSplitLayout/Menu/Sub/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="music_selected" from="VLayout/HSplitLayout/Content/Library" to="." method="_on_Library_music_selected"]
 [connection signal="file_selected" from="VLayout/HSplitLayout/Content/Artwork" to="." method="_on_Artwork_file_selected"]
 [connection signal="music_selected" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_music_selected"]
 [connection signal="pressed_artwork" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_pressed_artwork"]
 [connection signal="pressed_lyrics" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_pressed_lyrics"]
-[connection signal="dir_selected" from="FileInspector" to="." method="_on_FileInspector_dir_selected"]
-[connection signal="file_selected" from="FileInspector2" to="." method="_on_FileInspector2_file_selected"]
-[connection signal="pressed" from="Control/Button" to="." method="_on_Button_pressed"]
-
-[editable path="FileInspector2"]

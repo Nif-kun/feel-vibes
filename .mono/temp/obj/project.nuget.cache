@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "P7YpgW7OdTseF5MM7X7uIkE+rXqvt7n0xvNoknekiXffj9MfM/80k/JuqdPvdaYuQNfZWMoVjs9q2+4dSvBLOA==",
+  "dgSpecHash": "eO+jBKHQ901Z3WwUTL3B7uXEfBJhj/e/yi+35Ybez5RZ4wmajcz8rxOfLXEetilfKnbaIoOaxYwytEu2akeHMw==",
   "success": true,
-  "projectFilePath": "D:\\Programming\\Dev\\Godot\\Projects\\feel-vibes\\FeelVibes.csproj",
+  "projectFilePath": "F:\\Programming\\AppDev\\Projects\\feel-vibes\\FeelVibes.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Larid\\.nuget\\packages\\taglibsharp\\2.3.0\\taglibsharp.2.3.0.nupkg.sha512"
+    "C:\\Users\\Nif\\.nuget\\packages\\taglibsharp\\2.3.0\\taglibsharp.2.3.0.nupkg.sha512"
   ],
   "logs": []
 }

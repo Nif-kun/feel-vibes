@@ -51,7 +51,7 @@ func get_artists() -> PoolStringArray:
 	var artists = data.get("Artists")
 	if artists != null and !artists.empty() and !artists[0].empty():
 		return artists
-	return PoolStringArray(["Unknown"])
+	return PoolStringArray()
 
 func get_artworks() -> Array:
 	var artworks = data.get("Artworks")

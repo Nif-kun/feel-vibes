@@ -1,4 +1,4 @@
-extends Object
+extends Reference
 class_name FileCollection
 
 # Signals
@@ -9,10 +9,10 @@ signal thread_finished
 # Public
 var list := []
 
-
 # Private
 var _thread := Thread.new()
 var _renew_thread := true
+
 
 func _init(dir_path:String="", limit:=5, skip_hidden:=false, filters:=[], multithread:=true):
 	if !dir_path.empty():
@@ -21,6 +21,7 @@ func _init(dir_path:String="", limit:=5, skip_hidden:=false, filters:=[], multit
 	connect("thread_finished", self, "_thread_finished")
 
 
+# Opens the directory and saves all file paths to the list variable.
 func open(dir_path:String, limit:=5, skip_hidden:=false, filters:=[], multithread:=true):
 	list.clear()
 	if multithread:
@@ -34,6 +35,18 @@ func open(dir_path:String, limit:=5, skip_hidden:=false, filters:=[], multithrea
 			dir.list_dir_begin(true, skip_hidden)
 			_collect_files(dir, 0, limit, skip_hidden, filters)
 			emit_signal("file_collected", list)
+
+
+# Ensures safe or unsafe disposal of all objects within self.
+func dispose(force:=false):
+	list.clear()
+	if !force and _thread != null and _thread.is_alive():
+		_thread.wait_to_finish()
+
+
+# Used only when multi-threading.
+func renew_thread(value:bool):
+	_renew_thread = value
 
 
 # Format: [dir_path, limit, skip_hidden, filters]

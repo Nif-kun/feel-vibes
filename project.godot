@@ -19,6 +19,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://library/AudioLoader.gd"
 }, {
+"base": "GridContainer",
+"class": "AutoGrid",
+"language": "GDScript",
+"path": "res://scripts/tweaks/grid_auto_adjust.gd"
+}, {
 "base": "Reference",
 "class": "CameraDrag2D",
 "language": "GDScript",
@@ -33,6 +38,26 @@ _global_script_classes=[ {
 "class": "CameraZoom2D",
 "language": "GDScript",
 "path": "res://library/nui_lib/2D/camera_zoom_2d.gd"
+}, {
+"base": "PanelContainer",
+"class": "ContentArtwork",
+"language": "GDScript",
+"path": "res://scenes/artwork/artwork.gd"
+}, {
+"base": "PanelContainer",
+"class": "ContentLibrary",
+"language": "GDScript",
+"path": "res://scenes/library/library.gd"
+}, {
+"base": "ScrollContainer",
+"class": "ContentLyrics",
+"language": "GDScript",
+"path": "res://scenes/lyrics/lyrics.gd"
+}, {
+"base": "PanelContainer",
+"class": "ContentSettings",
+"language": "GDScript",
+"path": "res://scenes/settings/settings.gd"
 }, {
 "base": "Reference",
 "class": "Defaults",
@@ -64,30 +89,40 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://library/FairNG.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "FileCollection",
 "language": "GDScript",
 "path": "res://scripts/objects/file_collection.gd"
 }, {
-"base": "StrictFocusButton",
-"class": "IconButton",
+"base": "FileCollection",
+"class": "JSONCollection",
 "language": "GDScript",
-"path": "res://scripts/tweaks/button_icon_switch.gd"
+"path": "res://scripts/objects/json_collection.gd"
 }, {
-"base": "PanelContainer",
-"class": "ItemCard",
+"base": "Label",
+"class": "LabelNotif",
 "language": "GDScript",
-"path": "res://scenes/library/item_card.gd"
+"path": "res://scripts/tweaks/label_notif.gd"
 }, {
-"base": "HFlowContainer",
+"base": "AutoGrid",
 "class": "LibraryCategory",
 "language": "GDScript",
 "path": "res://scenes/library/library_category.gd"
+}, {
+"base": "PanelContainer",
+"class": "MainContent",
+"language": "GDScript",
+"path": "res://scenes/content.gd"
 }, {
 "base": "MusicObject",
 "class": "Music",
 "language": "GDScript",
 "path": "res://scripts/objects/music.gd"
+}, {
+"base": "PanelContainer",
+"class": "MusicCard",
+"language": "GDScript",
+"path": "res://scenes/library/music_card.gd"
 }, {
 "base": "Object",
 "class": "MusicLoader",
@@ -99,12 +134,12 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/objects/music_metadata.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "MusicObject",
 "language": "GDScript",
 "path": "res://scripts/objects/music_object.gd"
 }, {
-"base": "Object",
+"base": "Reference",
 "class": "MusicPlaylist",
 "language": "GDScript",
 "path": "res://scripts/objects/music_playlist.gd"
@@ -118,6 +153,11 @@ _global_script_classes=[ {
 "class": "PropBase",
 "language": "GDScript",
 "path": "res://scenes/editor/properties/prop_base.gd"
+}, {
+"base": "VBoxContainer",
+"class": "SettingsDirectories",
+"language": "GDScript",
+"path": "res://scenes/settings/directories.gd"
 }, {
 "base": "Reference",
 "class": "ShortLib",
@@ -139,6 +179,26 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/tweaks/line_edit_editable_sublte.gd"
 }, {
+"base": "StrictFocusButton",
+"class": "SwitchIconButton",
+"language": "GDScript",
+"path": "res://scripts/tweaks/button_icon_switch.gd"
+}, {
+"base": "SwitchIconButton",
+"class": "SwitchIconModulateButton",
+"language": "GDScript",
+"path": "res://scripts/tweaks/button_icon_modulate_switch.gd"
+}, {
+"base": "Button",
+"class": "SwitchModulateButton",
+"language": "GDScript",
+"path": "res://scripts/tweaks/button_modulate_switch.gd"
+}, {
+"base": "Node",
+"class": "UUID",
+"language": "GDScript",
+"path": "res://library/UUID.gd"
+}, {
 "base": "PanelContainer",
 "class": "Viewer",
 "language": "GDScript",
@@ -147,9 +207,14 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AudioCollection": "",
 "AudioLoader": "",
+"AutoGrid": "",
 "CameraDrag2D": "",
 "CameraSlide2D": "",
 "CameraZoom2D": "",
+"ContentArtwork": "",
+"ContentLibrary": "",
+"ContentLyrics": "",
+"ContentSettings": "",
 "Defaults": "",
 "Display": "",
 "DisplayCamera": "",
@@ -157,20 +222,27 @@ _global_script_class_icons={
 "Editor": "",
 "FairNG": "",
 "FileCollection": "",
-"IconButton": "",
-"ItemCard": "",
+"JSONCollection": "",
+"LabelNotif": "",
 "LibraryCategory": "",
+"MainContent": "",
 "Music": "",
+"MusicCard": "",
 "MusicLoader": "",
 "MusicMetadata": "",
 "MusicObject": "",
 "MusicPlaylist": "",
 "Notif": "",
 "PropBase": "",
+"SettingsDirectories": "",
 "ShortLib": "",
 "StrictFocusButton": "",
 "StrictSpinBox": "",
 "SubtleLineEdit": "",
+"SwitchIconButton": "",
+"SwitchIconModulateButton": "",
+"SwitchModulateButton": "",
+"UUID": "",
 "Viewer": ""
 }
 
@@ -178,6 +250,8 @@ _global_script_class_icons={
 
 config/name="FeelVibes"
 run/main_scene="res://scenes/FeelVibes.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="FeelVibes"
 boot_splash/image="res://icon.png"
 boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.121569, 0.113725, 0.129412, 1 )

@@ -120,8 +120,13 @@ func set_music(new_music:Music):
 		# Sets data to widgets
 		PlaybackSlider.max_value = length
 		EndTime.text = ShortLib.time_convert(length)
-		Title.text = new_music.metadata.get_title() # animate overflow text with bbcode
-		Artist.text = new_music.metadata.get_artists()[0]
+		Title.text = new_music.metadata.get_title()
+		Title.hint_tooltip = Title.text
+		if !new_music.metadata.get_artists().empty():
+			Artist.text = new_music.metadata.get_artists()[0]
+		else:
+			Artist.text = "Unknown"
+		Artist.hint_tooltip = Artist.text
 		AlbumArt.set_texture(new_music.metadata.get_artworks()[0]) 
 		
 		emit_signal("music_selected", music)

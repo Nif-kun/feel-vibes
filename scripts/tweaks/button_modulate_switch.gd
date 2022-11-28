@@ -1,5 +1,6 @@
 tool
 extends Button
+class_name SwitchModulateButton
 
 
 export var primary_color := Color.white setget set_primary_color, get_primary_color

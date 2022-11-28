@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=24 format=2]
+[gd_resource type="Theme" load_steps=46 format=2]
 
 [ext_resource path="res://assets/themes/presets/default/regular_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/themes/presets/default/bold_italic_font.tres" type="DynamicFont" id=2]
@@ -7,11 +7,105 @@
 [ext_resource path="res://assets/themes/presets/default/lyrics_font.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/themes/presets/default/text_button/highlight.tres" type="StyleBox" id=6]
 [ext_resource path="res://assets/themes/presets/default/text_button/normal.tres" type="StyleBox" id=7]
-[ext_resource path="res://assets/fonts/GoogleSans/GoogleSans-Regular.ttf" type="DynamicFontData" id=8]
-[ext_resource path="res://assets/fonts/NotoSansKR/NotoSansKR-Regular.otf" type="DynamicFontData" id=9]
-[ext_resource path="res://assets/fonts/NotoSansJP/NotoSansJP-Regular.otf" type="DynamicFontData" id=10]
-[ext_resource path="res://assets/fonts/NotoSansSC/NotoSansSC-Regular.otf" type="DynamicFontData" id=11]
-[ext_resource path="res://assets/fonts/NotoSans/NotoSans-Regular.ttf" type="DynamicFontData" id=12]
+[ext_resource path="res://assets/themes/presets/default/menu_button_font.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/themes/presets/default/category_tab_font.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/themes/presets/default/h1_font.tres" type="DynamicFont" id=10]
+[ext_resource path="res://assets/themes/presets/default/h3_font.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/themes/presets/default/h2_font.tres" type="DynamicFont" id=12]
+
+[sub_resource type="StyleBoxFlat" id=32]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.0431373 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=33]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.27451 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=35]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 0.403922, 0.262745, 0.717647, 1 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=34]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.105882 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=30]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.0431373 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id=29]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.27451 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id=31]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.105882 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -23,13 +117,111 @@
 
 [sub_resource type="StyleBoxEmpty" id=5]
 
-[sub_resource type="DynamicFont" id=11]
-size = 20
-font_data = ExtResource( 8 )
-fallback/0 = ExtResource( 12 )
-fallback/1 = ExtResource( 10 )
-fallback/2 = ExtResource( 9 )
-fallback/3 = ExtResource( 11 )
+[sub_resource type="StyleBoxEmpty" id=36]
+
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="StyleBoxEmpty" id=38]
+
+[sub_resource type="StyleBoxEmpty" id=18]
+content_margin_top = 30.0
+
+[sub_resource type="StyleBoxFlat" id=19]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.105882 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id=20]
+content_margin_left = 35.0
+content_margin_right = 35.0
+bg_color = Color( 1, 1, 1, 0.27451 )
+border_width_left = 5
+border_width_right = 5
+border_color = Color( 0.8, 0.8, 0.8, 0 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 1, 1, 1, 0.0627451 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.403922, 0.262745, 0.717647, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 1, 1, 1, 0.109804 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxEmpty" id=17]
+content_margin_left = 25.0
+
+[sub_resource type="StyleBoxFlat" id=14]
+content_margin_left = 25.0
+bg_color = Color( 0.403922, 0.262745, 0.717647, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_left = 25.0
+bg_color = Color( 1, 1, 1, 0.109804 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxEmpty" id=22]
+content_margin_left = 10.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=21]
+content_margin_left = 10.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 0.403922, 0.262745, 0.717647, 1 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id=23]
+content_margin_left = 10.0
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color( 1, 1, 1, 0.109804 )
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxEmpty" id=6]
 
@@ -41,29 +233,103 @@ fallback/3 = ExtResource( 11 )
 
 [sub_resource type="StyleBoxEmpty" id=10]
 
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.129412, 0.0705882, 0.145098, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 0.435294, 0.0313726, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+expand_margin_top = 5.0
+expand_margin_bottom = 5.0
+
 [resource]
 default_font = ExtResource( 1 )
+AddPlaylistButton/base_type = "Button"
+AddPlaylistButton/colors/font_color_disabled = Color( 1, 1, 1, 0.454902 )
+AddPlaylistButton/fonts/font = ExtResource( 11 )
+AddPlaylistButton/styles/disabled = SubResource( 32 )
+AddPlaylistButton/styles/focus = SubResource( 33 )
+AddPlaylistButton/styles/hover = SubResource( 35 )
+AddPlaylistButton/styles/normal = SubResource( 34 )
+AddPlaylistButton/styles/pressed = SubResource( 35 )
+BackButton/base_type = "Button"
+BackButton/fonts/font = ExtResource( 11 )
+BackButton/styles/disabled = SubResource( 30 )
+BackButton/styles/focus = SubResource( 29 )
+BackButton/styles/hover = SubResource( 29 )
+BackButton/styles/normal = SubResource( 31 )
+BackButton/styles/pressed = SubResource( 29 )
+H1Label/base_type = "Label"
+H1Label/fonts/font = ExtResource( 10 )
+H2Label/base_type = "Label"
+H2Label/fonts/font = ExtResource( 12 )
+H3Label/base_type = "Label"
+H3Label/fonts/font = ExtResource( 11 )
 HScrollBar/styles/grabber = SubResource( 1 )
 HScrollBar/styles/grabber_highlight = SubResource( 2 )
 HScrollBar/styles/grabber_pressed = SubResource( 3 )
 HScrollBar/styles/scroll = SubResource( 4 )
 HScrollBar/styles/scroll_focus = SubResource( 5 )
+ItallicLabel/base_type = "Label"
+ItallicLabel/fonts/font = ExtResource( 3 )
 LabelBold/base_type = "Label"
 LabelBold/fonts/font = ExtResource( 4 )
+LabelEdit/base_type = "LineEdit"
+LabelEdit/colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+LabelEdit/fonts/font = ExtResource( 10 )
+LabelEdit/styles/focus = SubResource( 36 )
+LabelEdit/styles/normal = SubResource( 37 )
+LabelEdit/styles/read_only = SubResource( 38 )
+LibraryTabContainer/base_type = "TabContainer"
+LibraryTabContainer/constants/side_margin = 95
+LibraryTabContainer/fonts/font = ExtResource( 9 )
+LibraryTabContainer/styles/panel = SubResource( 18 )
+LibraryTabContainer/styles/tab_bg = SubResource( 19 )
+LibraryTabContainer/styles/tab_fg = SubResource( 20 )
 LyricsLabel/base_type = "RichTextLabel"
 LyricsLabel/fonts/normal_font = ExtResource( 5 )
 RichTextLabel/fonts/bold_font = ExtResource( 4 )
 RichTextLabel/fonts/bold_italics_font = ExtResource( 2 )
 RichTextLabel/fonts/italics_font = ExtResource( 3 )
+SettingsButton/base_type = "Button"
+SettingsButton/colors/font_color_disabled = Color( 1, 1, 1, 0.490196 )
+SettingsButton/styles/disabled = SubResource( 27 )
+SettingsButton/styles/focus = SubResource( 24 )
+SettingsButton/styles/hover = SubResource( 24 )
+SettingsButton/styles/normal = SubResource( 26 )
+SettingsButton/styles/pressed = SubResource( 26 )
 TextButton/base_type = "Button"
 TextButton/styles/focus = ExtResource( 6 )
 TextButton/styles/hover = ExtResource( 6 )
 TextButton/styles/normal = ExtResource( 7 )
 TextButton/styles/pressed = ExtResource( 6 )
 TextMenuButton/base_type = "Button"
-TextMenuButton/fonts/font = SubResource( 11 )
+TextMenuButton/colors/font_color_disabled = Color( 1, 1, 1, 0.509804 )
+TextMenuButton/fonts/font = ExtResource( 8 )
+TextMenuButton/styles/disabled = SubResource( 17 )
+TextMenuButton/styles/focus = SubResource( 14 )
+TextMenuButton/styles/hover = SubResource( 14 )
+TextMenuButton/styles/normal = SubResource( 17 )
+TextMenuButton/styles/pressed = SubResource( 15 )
+TextMenuSubButton/base_type = "Button"
+TextMenuSubButton/colors/font_color_disabled = Color( 1, 1, 1, 0.490196 )
+TextMenuSubButton/styles/disabled = SubResource( 22 )
+TextMenuSubButton/styles/focus = SubResource( 21 )
+TextMenuSubButton/styles/hover = SubResource( 21 )
+TextMenuSubButton/styles/normal = SubResource( 22 )
+TextMenuSubButton/styles/pressed = SubResource( 23 )
 VScrollBar/styles/grabber = SubResource( 6 )
 VScrollBar/styles/grabber_highlight = SubResource( 7 )
 VScrollBar/styles/grabber_pressed = SubResource( 8 )
 VScrollBar/styles/scroll = SubResource( 9 )
 VScrollBar/styles/scroll_focus = SubResource( 10 )
+WarnLabel/base_type = "Label"
+WarnLabel/fonts/font = ExtResource( 11 )
+WarnLabel/styles/normal = SubResource( 28 )

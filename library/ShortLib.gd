@@ -84,10 +84,10 @@ static func get_dir_files(path:String, include_dir:bool=false, warn:bool=false) 
 
 static func write_text_file(file_path:String, text:String, overwrite:bool=true, warn:bool=false):
 	var file = File.new()
-	var dir = Directory.new()
-	if dir.file_exists(file_path) and overwrite:
-		dir.remove(file_path)
-	var open_err = file.open(file_path, file.WRITE)
+	var write_mode = file.READ_WRITE
+	if overwrite:
+		write_mode = file.WRITE
+	var open_err = file.open(file_path, write_mode)
 	if open_err == OK:
 		file.store_string(text)
 	elif warn: push_warning("ShortLib[WRN]: an error occurred when trying to access the path. ERR_CODE: "+str(open_err))

@@ -1,4 +1,4 @@
-extends Object
+extends Reference
 class_name MusicObject
 
 const valid_types := PoolStringArray(["mp3", "wav", "ogg"])

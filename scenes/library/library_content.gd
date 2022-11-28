@@ -1,58 +1,58 @@
-extends VBoxContainer
-
-# Signals
-signal item_pressed(music_playlist)
+extends ScrollContainer
 
 # Nodes
-onready var CoverArt := $Header/VBox/CoverArt
-onready var Title := $Header/VBox/Title
-onready var List := $List/VBox
+onready var Playlist := $PBox/Playlist
+onready var PlaylistCards := $PBox/PlaylistCards as LibraryCategory
+onready var AlbumCards := $PBox/AlbumCards as LibraryCategory
+onready var ArtistCards := $PBox/ArtistsCards as LibraryCategory
+onready var PBox := $PBox
 
 # Private
-var _music_item_scene = preload("res://scenes/library/MusicItem.tscn")
+var _current_visible
+var _previous_visible
 
 # Public
-var music_playlist : MusicPlaylist
-var item_list = []
+export var default := "PlaylistCards"
 
 
-func set_cover_art(texture:Texture):
-	CoverArt.texture = texture
-
-func get_cover_art() -> Texture:
-	return CoverArt.texture
-
-
-func set_title(text:String):
-	Title.text = text
-
-func get_title() -> String:
-	return Title.text
+func _ready():
+	var children = PBox.get_children()
+	for child in children:
+		if child.visible:
+			if child.name.to_lower() != default.to_lower():
+				child.hide()
+			else:
+				_current_visible = child
 
 
-func fill(playlist:MusicPlaylist):
-	music_playlist = playlist
-	CoverArt.texture = playlist.cover_art
-	Title.text = playlist.title
-	
-	item_list.clear()
-	for child in List.get_children():
-		List.remove_child(child)
-		child.queue_free()
-	
-	for music in playlist.list:
-		add_item(music)
+func get_current() -> Control:
+	return _current_visible
+
+func get_previous() -> Control:
+	return _previous_visible
 
 
-func add_item(music:Music):
-	var item = _music_item_scene.instance()
-	item.set_music(music)
-	item.connect("pressed", self, "_on_MusicItem_pressed")
-	item_list.append(item)
-	List.add_child(item)
+func show_previous():
+	_show_node(_previous_visible)
+
+func show_playlist():
+	_show_node(Playlist)
+
+func show_playlist_cards():
+	_show_node(PlaylistCards)
+
+func show_album_cards():
+	_show_node(AlbumCards)
+
+func show_artist_cards():
+	_show_node(ArtistCards)
 
 
-func _on_MusicItem_pressed(music):
-	if music_playlist != null:
-		music_playlist.set_current(music_playlist.get_position(music))
-		emit_signal("item_pressed", music_playlist)
+func _show_node(node):
+	if _current_visible == null:
+		_current_visible = node
+	else:
+		_previous_visible = _current_visible
+		_current_visible.hide()
+	node.show()
+	_current_visible = node

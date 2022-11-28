@@ -11,7 +11,7 @@ onready var SizeWarning := $Notifs/Margin/HLayout/SizeWarning
 
 # Paths
 var temp_dir := Defaults.get_temp_dir()
-var config_file := Defaults.config_file
+var config_file := Defaults.fvd_config_file
 var project_extension := Defaults.project_extension
 
 # Private 
@@ -117,3 +117,6 @@ func _on_SaveFile_file_selected(file):
 		Properties.save_data(temp_dir, temp_dir+"/"+config_file, file.trim_suffix(extension)+project_extension)
 		_save_path = file.trim_suffix(extension)+project_extension
 
+
+func _on_Return_pressed():
+	assert(get_tree().change_scene(Defaults.FeelVibes) == OK, "Editor[ERR]: Failed  to load FeelVibes!")

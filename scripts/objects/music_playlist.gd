@@ -1,13 +1,15 @@
-extends Object
+extends Reference
 class_name MusicPlaylist
 
 # Dependencies:
 #	ShortLib by Nif
 
 # Public 
-var title := ""
+var title := "Untitled"
 var cover_art : Texture
 var list := [] # Music class array
+var file_path := ""
+var id := ""
 
 # Private
 var _FairNG : FairNG
@@ -17,13 +19,15 @@ var _initial_list_size := 0 # called only on one-run start functions
 var _music_played_count := 0
 
 
-func _init(new_title:String, new_list:=[], cover_art_path:String="", index:=0):
+func _init(new_title:String="Untitled", new_list:=[], cover_art_path:String="", index:=0, uid:=false):
 	title = new_title
 	_cover_art_path = cover_art_path
 	cover_art = ShortLib.load_texture(cover_art_path)
 	list = new_list
 	_current_music_index = _clamp_index(index)
 	_initial_list_size = list.size()
+	if uid:
+		id = UUID.v4()
 
 
 func set_title(new_title:String):
@@ -44,6 +48,15 @@ func set_list(new_list:Array):
 
 func get_list() -> Array:
 	return list
+
+func set_file_path(path:String):
+	file_path = path
+
+func get_file_path() -> String:
+	return file_path
+
+func generate_id():
+	id = UUID.v4()
 
 
 func add(music:Music):
@@ -125,10 +138,11 @@ func get_previous() -> Music:
 
 
 # CAUTION unsure if setget of data actually properly works.
-# Data format: { "title":title, "cover_art":path, "list":list }
+# Data format: {"id":id, "title":title, "cover_art":path, "list":list }
 func set_data(music_list:Array, data:Dictionary):
 	if data.size() > 0:
-		title = data.get("title", "UNTITLED")
+		id = data.get("id", UUID.v4())
+		title = data.get("title", "Untitled")
 		cover_art = ShortLib.load_texture(data.get("cover_art_path", "")) 
 		var path_list = data.get("music_path_list", [])
 		for path in path_list: # this as baseloop mirrors path_list sequence.
@@ -142,6 +156,7 @@ func get_data() -> Dictionary:
 	for music in list:
 		music_path_list.append(music.file_path)
 	var data = { 
+		"id":id,
 		"title":title,
 		"cover_art_path":_cover_art_path,
 		"music_path_list":music_path_list
