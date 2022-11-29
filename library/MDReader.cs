@@ -36,6 +36,13 @@ public class MDReader : Reference
 		return TagLib.File.Create(@path).Tag.AlbumArtists;
 	}
 
+	public static void SetLyrics(string path, string lyrics) 
+	{
+		var tfile = TagLib.File.Create(@path);
+		tfile.Tag.Lyrics = lyrics;
+		tfile.Save();
+	}
+
 	public static string GetLyrics(string path)
 	{
 		return TagLib.File.Create(@path).Tag.Lyrics;

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scenes/library/library.gd" type="Script" id=1]
 [ext_resource path="res://scenes/library/library_category_album.gd" type="Script" id=2]
@@ -97,6 +97,9 @@ corner_radius_bottom_left = 10
 [sub_resource type="StyleBoxEmpty" id=22]
 
 [sub_resource type="StyleBoxEmpty" id=23]
+
+[sub_resource type="StyleBoxEmpty" id=24]
+content_margin_right = 50.0
 
 [node name="Library" type="PanelContainer"]
 anchor_right = 1.0
@@ -379,6 +382,7 @@ margin_right = 940.0
 margin_bottom = 26.0
 size_flags_horizontal = 3
 theme_type_variation = "H3Label"
+custom_styles/normal = SubResource( 24 )
 text = "Length"
 align = 2
 

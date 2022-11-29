@@ -45,6 +45,13 @@ func _on_Settings_pressed():
 	Content.show_settings()
 
 
+func _on_MusicPlayer_played():
+	Content.Artwork.start()
+
+func _on_MusicPlayer_paused():
+	Content.Artwork.stop()
+
+
 func _on_MusicPlayer_pressed_lyrics():
 	Content.show_lyrics()
 
@@ -73,3 +80,4 @@ func _on_MusicPlayer_music_selected(music):
 
 func _on_Artwork_file_selected(file_path):
 	MusicPlayer.get_playlist().get_current().metadata.set_comment(file_path)
+

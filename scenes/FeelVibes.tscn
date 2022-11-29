@@ -285,5 +285,7 @@ auto_start = true
 [connection signal="music_selected" from="VLayout/HSplitLayout/Content/Library" to="." method="_on_Library_music_selected"]
 [connection signal="file_selected" from="VLayout/HSplitLayout/Content/Artwork" to="." method="_on_Artwork_file_selected"]
 [connection signal="music_selected" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_music_selected"]
+[connection signal="paused" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_paused"]
+[connection signal="played" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_played"]
 [connection signal="pressed_artwork" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_pressed_artwork"]
 [connection signal="pressed_lyrics" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_pressed_lyrics"]

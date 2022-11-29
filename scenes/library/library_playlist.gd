@@ -36,9 +36,10 @@ func fill(new_music_card:MusicCard, new_category:LibraryCategory):
 	save_edit()
 	category = new_category
 	music_card = new_music_card
-	editable(music_card.editable)
-	
+	var editable = music_card.editable
+	editable(editable)
 	if music_playlist != null and music_playlist == new_music_card.playlist:
+		print(music_playlist.title," and ",new_music_card.playlist.title)
 		return # escapes function
 	
 	music_item_group = MusicItemGroup.new()
@@ -54,7 +55,7 @@ func fill(new_music_card:MusicCard, new_category:LibraryCategory):
 	_title_node.text = music_playlist.title
 	clear()
 	for music in music_playlist.list:
-		add_item(music)
+		add_item(music, editable)
 
 func clear():
 	for child in List.get_children():
@@ -62,10 +63,13 @@ func clear():
 		child.queue_free()
 
 
-func add_item(music:Music):
+func add_item(music:Music, editable:bool):
 	var item = _music_item_scene.instance()
 	item.set_music(music)
+	item.set_editable(editable)
 	item.connect("pressed", self, "_on_MusicItem_pressed")
+	item.connect("remove_pressed", self, "_on_MusicItem_remove_pressed")
+	item.connect("repositioned", self, "_on_MusicItem_repositioned")
 	List.add_child(item)
 	music_item_group.add(item)
 
@@ -104,9 +108,16 @@ func _on_SearchEdit_focus_exited():
 
 func _on_MusicItem_pressed(music_item):
 	if music_playlist != null:
+		GlobalLibrary.current_playlist_card = music_card
 		_current_playlist_playing = music_playlist
 		music_playlist.set_current(music_playlist.get_position(music_item.music))
 		emit_signal("item_pressed", music_playlist)
+
+func _on_MusicItem_repositioned(music, index):
+	music_playlist.set_position(music, index)
+
+func _on_MusicItem_remove_pressed(music):
+	music_playlist.remove(music)
 
 
 func _on_Playlist_current_changed(music):

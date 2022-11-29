@@ -119,7 +119,7 @@ func set_position(music:Music, index:int):
 			list.insert(clamped_index, selected_music)
 			
 			var new_current_index = list.find(current_music)
-			if new_current_index > 0:
+			if new_current_index >= 0:
 				_current_music_index = new_current_index
 
 func get_position(music:Music) -> int:

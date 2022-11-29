@@ -14,6 +14,7 @@ func add(music_item:MusicItem):
 	# warning-ignore:return_value_discarded
 	music_item.connect("pressed", self, "_on_MusicItem_pressed")
 	if music_item.music == _preset_music:
+		current_selected = music_item
 		music_item.select()
 
 
@@ -59,7 +60,7 @@ func hide_all():
 
 func _on_MusicItem_pressed(music_item):
 	if current_selected != music_item:
-		if current_selected != null:
+		if is_instance_valid(current_selected) and current_selected != null:
 			current_selected.unselect()
 		current_selected = music_item
 		current_selected.select()

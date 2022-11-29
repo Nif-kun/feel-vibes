@@ -1,5 +1,8 @@
 extends ScrollContainer
 
+# Signals
+signal pressed
+
 # Public 
 export var auto := false
 # warning-ignore:export_hint_type_mistmatch
@@ -18,6 +21,11 @@ func _ready():
 		connect("mouse_exited", self, "_mouse_exited")
 		# warning-ignore:return_value_discarded
 		connect("resized", self, "_resized")
+
+
+func _gui_input(event):
+	if event.is_action_pressed("mouse_left"):
+		emit_signal("pressed")
 
 
 func _mouse_entered():

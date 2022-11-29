@@ -5,6 +5,8 @@ extends PanelContainer
 signal pressed_lyrics
 signal pressed_artwork
 signal music_selected(music)
+signal paused
+signal played
 
 # Nodes
 onready var MusicStreamer := $AudioStreamPlayer
@@ -74,10 +76,12 @@ func play():
 	
 	if !PlayButton.pressed: # in last to not re-trigger the toggle event.
 		PlayButton.pressed = true
+	emit_signal("played")
 
 func pause():
 	MusicStreamer.stream_paused = true
 	set_process(false)
+	emit_signal("paused")
 
 func next():
 	if playlist != null and !playlist.list.empty():
@@ -208,6 +212,10 @@ func _on_Playback_value_changed(value):
 func _on_Lyrics_pressed():
 	emit_signal("pressed_lyrics")
 
-
 func _on_Artwork_pressed():
 	emit_signal("pressed_artwork")
+
+
+func _on_Title_pressed():
+	if GlobalLibrary.current_playlist_card != null:
+		GlobalLibrary.current_playlist_card.emit_signal("pressed", GlobalLibrary.current_playlist_card)

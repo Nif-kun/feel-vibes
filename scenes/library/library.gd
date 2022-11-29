@@ -47,7 +47,8 @@ func _on_Artist_toggled(button_pressed):
 func _on_MusicCard_pressed(music_card):
 	if music_card.playlist != null:
 		Playlist.fill(music_card, Content.get_current())
-		Content.show_playlist()
+		if Content.get_current() != Content.Playlist:
+			Content.show_playlist()
 		BackBtn.disabled = false
 		AddPlaylistBtn.hide()
 

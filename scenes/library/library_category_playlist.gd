@@ -36,3 +36,6 @@ func _custom_fill(music_list:Array, multithread:=true):
 	if multithread:
 		call_deferred("emit_signal", "thread_finished")
 
+func add_card(playlist:MusicPlaylist, editable:=false):
+	.add_card(playlist, editable)
+	GlobalLibrary.custom_music_cards = card_list

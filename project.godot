@@ -199,6 +199,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/tweaks/button_icon_modulate_switch.gd"
 }, {
+"base": "SwitchIconButton",
+"class": "SwitchIconModulateMenuButton",
+"language": "GDScript",
+"path": "res://scripts/tweaks/menu_button_icon_modulate_switch.gd"
+}, {
 "base": "Button",
 "class": "SwitchModulateButton",
 "language": "GDScript",
@@ -253,6 +258,7 @@ _global_script_class_icons={
 "SubtleLineEdit": "",
 "SwitchIconButton": "",
 "SwitchIconModulateButton": "",
+"SwitchIconModulateMenuButton": "",
 "SwitchModulateButton": "",
 "UUID": "",
 "Viewer": ""
@@ -276,6 +282,7 @@ default_bus_layout=""
 [autoload]
 
 SceneHandler="*res://scripts/scene_handler.gd"
+GlobalLibrary="*res://scenes/library/global_library.gd"
 
 [display]
 
