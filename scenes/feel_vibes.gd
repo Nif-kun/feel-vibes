@@ -11,10 +11,12 @@ onready var MusicPlayer := $"%MusicPlayer"
 onready var Content := $VLayout/HSplitLayout/Content as MainContent
 onready var Layout := $VLayout
 onready var Loading := $Loading
+onready var Expanded := $Expanded
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	Expanded.hide()
 	# warning-ignore:return_value_discarded
 	Content.Settings.Directories.connect("music_collected", self, "_on_Directories_music_collected")
 	if !Content.Settings.Directories.music_dir_empty:
@@ -27,6 +29,11 @@ func _ready():
 		remove_child(Loading)
 		Loading.queue_free()
 		Layout.show()
+
+
+func _input(event):
+	if event.is_action_pressed("ui_cancel"):
+		Expanded.hide()
 
 
 func _on_Directories_music_collected(music_list):
@@ -53,10 +60,16 @@ func _on_MusicPlayer_paused():
 
 
 func _on_MusicPlayer_pressed_lyrics():
-	Content.show_lyrics()
+	if Content.Lyrics.visible:
+		Content.show_previous()
+	else:
+		Content.show_lyrics()
 
 func _on_MusicPlayer_pressed_artwork():
-	Content.show_artwork()
+	if Content.Artwork.visible:
+		Content.show_previous()
+	else:
+		Content.show_artwork()
 
 
 func _on_Library_music_selected(music_playlist):
@@ -73,11 +86,24 @@ func _on_MusicPlayer_music_selected(music):
 	else:
 		Content.Artwork.reset()
 	if !lyrics.empty():
-		Content.Lyrics.set_text(lyrics)
+		Content.Lyrics.set_text(lyrics, music)
 	else:
-		Content.Lyrics.set_text("No lyrics...")
+		Content.Lyrics.set_text("No lyrics...", music)
 
 
 func _on_Artwork_file_selected(file_path):
 	MusicPlayer.get_playlist().get_current().metadata.set_comment(file_path)
 
+
+func _on_Artwork_expand_pressed(control):
+	Expanded.show()
+	for child in Expanded.get_children():
+		if child != get_node("Expanded/HBox"):
+			Expanded.remove_child(child)
+			child.queue_free()
+			
+	Expanded.add_child(control.duplicate())
+
+
+func _on_Minimize_pressed():
+	Expanded.hide()

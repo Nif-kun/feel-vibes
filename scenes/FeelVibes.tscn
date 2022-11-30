@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scripts/tweaks/button_icon_switch.gd" type="Script" id=1]
 [ext_resource path="res://scenes/window/Handle.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://assets/icons/material_ui/white_48dp/settings_white_48dp.svg" type="Texture" id=18]
 [ext_resource path="res://scenes/settings/Settings.tscn" type="PackedScene" id=19]
 [ext_resource path="res://addons/atlas_player/atlas_player.gd" type="Script" id=20]
+[ext_resource path="res://assets/icons/material_ui/white_48dp/clear_white_48dp.svg" type="Texture" id=21]
+[ext_resource path="res://scripts/tweaks/button_icon_modulate_switch.gd" type="Script" id=22]
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
@@ -63,10 +65,23 @@ content_margin_left = 25.0
 
 [sub_resource type="StyleBoxEmpty" id=27]
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=37]
 flags = 4
 atlas = ExtResource( 9 )
 region = Rect2( 0, 0, 200, 200 )
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.101961, 0.101961, 0.101961, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=32]
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="StyleBoxEmpty" id=34]
+
+[sub_resource type="StyleBoxEmpty" id=35]
+
+[sub_resource type="StyleBoxEmpty" id=36]
 
 [node name="FeelVibes" type="PanelContainer"]
 anchor_right = 1.0
@@ -269,7 +284,7 @@ align = 1
 margin_top = 220.0
 margin_right = 1024.0
 margin_bottom = 420.0
-texture = SubResource( 29 )
+texture = SubResource( 37 )
 stretch_mode = 4
 script = ExtResource( 20 )
 atlas_texture = ExtResource( 9 )
@@ -279,13 +294,44 @@ end_frame = 120
 speed = 0.03
 auto_start = true
 
+[node name="Expanded" type="PanelContainer" parent="."]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 30 )
+
+[node name="HBox" type="HBoxContainer" parent="Expanded"]
+margin_right = 1024.0
+margin_bottom = 600.0
+alignment = 2
+
+[node name="Minimize" type="Button" parent="Expanded/HBox"]
+margin_left = 984.0
+margin_right = 1024.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 40, 40 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/hover = SubResource( 32 )
+custom_styles/pressed = SubResource( 33 )
+custom_styles/focus = SubResource( 34 )
+custom_styles/disabled = SubResource( 35 )
+custom_styles/normal = SubResource( 36 )
+icon = ExtResource( 21 )
+expand_icon = true
+script = ExtResource( 22 )
+secondary_color = Color( 0.513726, 0.47451, 1, 1 )
+
 [connection signal="pressed" from="VLayout/HSplitLayout/Menu/Main/Library" to="." method="_on_Library_pressed"]
 [connection signal="pressed" from="VLayout/HSplitLayout/Menu/Main/Design" to="." method="_on_Design_pressed"]
 [connection signal="pressed" from="VLayout/HSplitLayout/Menu/Sub/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="music_selected" from="VLayout/HSplitLayout/Content/Library" to="." method="_on_Library_music_selected"]
+[connection signal="expand_pressed" from="VLayout/HSplitLayout/Content/Artwork" to="." method="_on_Artwork_expand_pressed"]
 [connection signal="file_selected" from="VLayout/HSplitLayout/Content/Artwork" to="." method="_on_Artwork_file_selected"]
 [connection signal="music_selected" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_music_selected"]
 [connection signal="paused" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_paused"]
 [connection signal="played" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_played"]
 [connection signal="pressed_artwork" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_pressed_artwork"]
 [connection signal="pressed_lyrics" from="VLayout/MusicPlayer" to="." method="_on_MusicPlayer_pressed_lyrics"]
+[connection signal="pressed" from="Expanded/HBox/Minimize" to="." method="_on_Minimize_pressed"]

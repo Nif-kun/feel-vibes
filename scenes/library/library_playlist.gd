@@ -39,7 +39,6 @@ func fill(new_music_card:MusicCard, new_category:LibraryCategory):
 	var editable = music_card.editable
 	editable(editable)
 	if music_playlist != null and music_playlist == new_music_card.playlist:
-		print(music_playlist.title," and ",new_music_card.playlist.title)
 		return # escapes function
 	
 	music_item_group = MusicItemGroup.new()

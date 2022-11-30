@@ -3,16 +3,20 @@ class_name ContentArtwork
 
 # Signals
 signal file_selected(file_path)
+signal expand_pressed(control)
 
 # CS.Objects
 onready var Zipper := Defaults.zipper_script.new()
 
 # Nodes
-onready var BgColor := $BgColor
-onready var BgTexture := $BgTexture
-onready var AtlasPlayer := $AtlasPlayer
-onready var Info := $Info
+onready var BgColor := $VBox/Animation/BgColor
+onready var BgTexture := $VBox/Animation/BgTexture
+onready var AtlasPlayer := $VBox/Animation/AtlasPlayer
+onready var AnimationBox := $VBox/Animation
+onready var AnimationBtn := $VBox/Widgets/Animation
+#onready var Info := $Info
 onready var OpenDialog := $NativeDialogOpenFile
+onready var Visualizer := $Visualizer
 
 # Paths
 var temp_dir := Defaults.get_temp_dir()
@@ -28,7 +32,7 @@ var playing := false
 var file_path := ""
 
 func _ready():
-	Info.hide()
+#	Info.hide()
 	BgColor.color = _default_bg_color
 
 
@@ -42,13 +46,13 @@ func reset():
 	AtlasPlayer.set_end_frame(1)
 	AtlasPlayer.set_speed(1)
 	AtlasPlayer.set_loop(true)
-	Info.show()
+#	Info.show()
 
 
 func set_animation(save_path:String):
 	file_path = save_path
 	if save_path.to_lower().get_extension() == "fvd":
-		Info.hide()
+#		Info.hide()
 		var texture_images = Zipper.CollectTextureImages(save_path)
 		var config_json :Dictionary= JSON.parse(Zipper.ReadTextFile(save_path, config_file)).result
 		BgColor.color = Color(config_json["background"]["color"])
@@ -70,7 +74,6 @@ func start():
 	AtlasPlayer.start()
 	playing = true
 
-
 func stop():
 	AtlasPlayer.stop()
 	playing = false
@@ -84,4 +87,25 @@ func _on_Select_pressed():
 func _on_NativeDialogOpenFile_files_selected(files):
 	if !files.empty():
 		set_animation(files[0])
+		AnimationBtn.pressed = true
 		emit_signal("file_selected", files[0])
+
+
+
+func _on_Visualizer_toggled(button_pressed):
+	if button_pressed:
+		Visualizer.show()
+		AnimationBox.hide()
+
+
+func _on_Animation_toggled(button_pressed):
+	if button_pressed:
+		Visualizer.hide()
+		AnimationBox.show()
+
+
+func _on_Expand_pressed():
+	if AnimationBtn.pressed:
+		emit_signal("expand_pressed", AnimationBox)
+	else:
+		emit_signal("expand_pressed", Visualizer)

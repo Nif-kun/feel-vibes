@@ -16,8 +16,4 @@ func get_custom_playlists() -> Array:
 func add_playlist_song(title:String, music:Music):
 	for music_card in custom_music_cards:
 		if music_card.playlist.title.to_lower() == title.to_lower():
-			for _music in music_card.playlist.list:
-				if _music == music:
-					return
-				else:
-					music_card.playlist.list.append(music) 
+			music_card.playlist.add(music)

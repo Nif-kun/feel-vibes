@@ -80,6 +80,12 @@ func get_track() -> int:
 func get_genres() -> PoolStringArray:
 	return data.get("Genres", [])
 
+func set_lyrics(lyrics:String):
+	if valid:
+		var MDReader = Defaults.mdreader_script.new()
+		data["Lyrics"] = lyrics
+		MDReader.SetLyrics(file_path, lyrics)
+
 func get_lyrics() -> String:
 	var lyrics = data.get("Lyrics", "")
 	if lyrics != null:

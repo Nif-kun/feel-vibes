@@ -49,7 +49,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/library/library.gd"
 }, {
-"base": "ScrollContainer",
+"base": "PanelContainer",
 "class": "ContentLyrics",
 "language": "GDScript",
 "path": "res://scenes/lyrics/lyrics.gd"
@@ -209,6 +209,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/tweaks/button_modulate_switch.gd"
 }, {
+"base": "TextEdit",
+"class": "TextEditFontResizer",
+"language": "GDScript",
+"path": "res://scripts/tweaks/text_edit_font_resizer.gd"
+}, {
 "base": "Node",
 "class": "UUID",
 "language": "GDScript",
@@ -260,6 +265,7 @@ _global_script_class_icons={
 "SwitchIconModulateButton": "",
 "SwitchIconModulateMenuButton": "",
 "SwitchModulateButton": "",
+"TextEditFontResizer": "",
 "UUID": "",
 "Viewer": ""
 }
@@ -275,14 +281,11 @@ boot_splash/fullsize=false
 boot_splash/bg_color=Color( 0.121569, 0.113725, 0.129412, 1 )
 config/icon="res://icon.png"
 
-[audio]
-
-default_bus_layout=""
-
 [autoload]
 
 SceneHandler="*res://scripts/scene_handler.gd"
 GlobalLibrary="*res://scenes/library/global_library.gd"
+GlobalChords="*res://scenes/lyrics/global_chords.gd"
 
 [display]
 
@@ -290,7 +293,7 @@ window/dpi/allow_hidpi=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/atlas_player/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/native_dialogs/plugin.cfg", "res://addons/project-statistics/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Todo_Manager/plugin.cfg", "res://addons/atlas_player/plugin.cfg", "res://addons/aud_vis/plugin.cfg", "res://addons/dockable_container/plugin.cfg", "res://addons/flex_container/plugin.cfg", "res://addons/native_dialogs/plugin.cfg", "res://addons/project-statistics/plugin.cfg" )
 
 [gui]
 

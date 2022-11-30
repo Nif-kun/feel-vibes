@@ -5,6 +5,7 @@ const _temp_dir := "temp"
 const _chords_dir := "chords"
 const _playlist_dir := "playlist"
 const settings_config_file := "settings.cfg"
+const chords_config_file := "chords.cfg"
 const fvd_config_file := "fvd_config.json"
 const project_extension := ".fvd"
 const playlist_extension := ".fvp"
@@ -22,6 +23,9 @@ static func get_playlist_dir() -> String:
 
 static func get_chords_dir() -> String:
 	return OS.get_user_data_dir()+"/"+_chords_dir
+
+static func get_chords_config_file() -> String:
+	return OS.get_user_data_dir()+"/"+chords_config_file
 
 static func get_settings_config_file() -> String:
 	return OS.get_user_data_dir()+"/"+settings_config_file
